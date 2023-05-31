@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my mini gpt project</title>
+    <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
+      .header {
+        display: flex;
+        border-bottom: solid 2px #aaa;
+      }
+
+      #lang {
+        margin: 10px;
+      }
+
+      #answerSection {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .gptPart .userPart {
+        display: flex;
+        flex-direction: column;
+      }
+      .AnswerList {
+        display: flex;
+        text-align: center;
+      }
+
+      .answer {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <p>logo</p>
+      <p>언어선택</p>
+      <select id="lang">
+        <option>한국어(Korean)</option>
+        <option>영어(English)</option>
+      </select>
+    </header>
+
+    <h1>GPT와 겨루는 끝말잇기 한판!</h1>
+    <div>게임 규칙 실패 카운트가 3이 되는 순간 패배합니다.</div>
+    <button id="startBtn">시작</button>
+
+    <section id="userInput">
+      <form action="post">
+        <input type="text" autofocus />
+        <button id="answerBtn">답장 보내기</button>
+      </form>
+    </section>
+
+    <section id="answerSection">
+      <div class="gptPart">
+        <div class="AnswerList">GPT ANSWER</div>
+        <p class="answer">test</p>
+        <p class="answer">test</p>
+        <p class="answer">test</p>
+      </div>
+      <div class="userPart">
+        <div class="AnswerList">USER ANSWER</div>
+        <p class="answer">test</p>
+        <p class="answer">test</p>
+        <p class="answer">test</p>
+      </div>
+    </section>
+
+    <div id="contents"></div>
+
+    <script>
+      const $selbox = document.querySelector("#lang");
+      const count_max = 3;
+      let selected_lang = $selbox.options[$selbox.selectedIndex].value;
+      let gpt_count = 0;
+      let user_count = 0;
+
+      let answers = {
+        gpt: [],
+        user: [],
+      };
+
+      let $input = document.querySelector("input");
+      let $answerBtn = document.querySelector("#answerBtn");
+
+      let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
+      let data = [];
+
+      resetData();
+
+      // 언어선택
+      $selbox.addEventListener("change", (e) => {
+        // console.log(e)
+        idx = e.target.selectedIndex;
+        selected_lang = $selbox.options[$selbox.selectedIndex].value;
+
+        resetData();
+
+        $startBtn.disabled = false;
+      });
+
+      // 시작버튼
+      const $startBtn = document.querySelector("#startBtn");
+      $startBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log(e);
+        console.log(e.target);
+        e.target.disabled = true;
+        chatGptAPI();
+      });
+
+      $answerBtn.addEventListener("click", (e) => {
+        console.log(e);
+        e.preventDefault(); // 화면 멈춤. 아무런 액션이 일어나지 않음
+        //console.log(e); // pointerEvent
+        //console.log($input.value);
+        userInputData = $input.value;
+        $input.value = "";
+
+        answers.user.push(userInputData);
+        data.push({
+          role: "user",
+          content: userInputData,
+        });
+
+        document.querySelector("#contents").innerHTML += userInputData;
+
+        chatGptAPI();
+      });
+
+      function chatGptAPI() {
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          redirect: "follow",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res);
+            console.log(res.choices[0].message.content);
+
+            result = getJsonAnswer(res.choices[0].message.content);
+            if (result === "") {
+              return;
+            }
+
+            document.querySelector("#contents").innerText += "\n" + result;
+          });
+      }
+
+      function getJsonAnswer(text) {
+        if (text.indexOf("{") === -1 || text.indexOf("}") === -1) {
+          return "";
+        }
+        let json_obj = JSON.parse(
+          text.slice(text.indexOf("{"), text.indexOf("}") + 1)
+        );
+        answers.gpt.push(json_obj.answer);
+        console.log(answers.gpt.length);
+        console.log(answers.gpt[answers.gpt.length - 1]);
+        return answers.gpt[answers.gpt.length - 1];
+      }
+
+      // 언어에 따른 데이터 셋 초기화
+      function resetData() {
+        data = [
+          {
+            role: "system",
+            content: "assistant는 끝말잇기의 달인입니다.",
+          },
+          {
+            role: "user",
+            content: "끝말잇기는 규칙을 알려주면 학습할 수 있니?",
+          },
+          {
+            role: "assistant",
+            content: "네 말씀해주신 규칙대로 학습할 수 있습니다.",
+          },
+          {
+            role: "user",
+            content:
+              "끝말잇기는 단어의 마지막 음절로 시작하는 단어를 이어서 말하는 놀이입니다. 반드시 상대가 말한 단어의 마지막 음절로 시작하는 단어를 말해야 합니다. 다음 사람은 이전 단어의 마지막 음절로 시작하는 단어만 말할 수 있으며, 똑같은 단어나 중복되는 단어를 말하거나, 의미가 없는 단어를 말하면 패배 조건에 해당합니다.",
+          },
+          {
+            role: "assistant",
+            content:
+              "그렇습니다. 간단히 말하면, 이전에 상대방이 말한 단어의 마지막음절로 시작하는 단어를 말하는 게임입니다. 상대방이 말한 단어의 끝소리와 같은 소리를 가진 단어는 사용할 수 없습니다. 또한, 이미 사용된 단어, 의미 없는 단어, 외국어나 단체명, 이름 등은 사용할 수 없습니다. 이 규칙들을 지키면서 상대방이 말한 단어의 마지막음절로 시작하는 단어를 차례로 이어가며 놀이를 계속합니다.",
+          },
+          {
+            role: "user",
+            content:
+              "우리가 할 끝말잇기 규칙에는 시간 제한은 없으며, 외국어나 단체명이더라도 사전에 있는 단어는 사용이 가능합니다. 당신은 user가 입력한 단어의 마지막 음절로 시작하는 단어를 응답으로 보내주어야 합니다.",
+          },
+          {
+            role: "assistant",
+            content:
+              "그렇습니다. 일반적인 끝말잇기 게임에서는 시간 제한이 없으며, 외국어나 단체명이 사전에 올라와 있는 경우에는 사용이 가능합니다. 하지만 이전에 말한 단어의 끝소리와 같은 소리를 가진 단어나 이미 사용된 단어, 의미 없는 단어는 여전히 사용할 수 없습니다. 또한, 너무 대체로적인 단어나 욕설 등 부적절한 단어도 사용해서는 안 됩니다.",
+          },
+          {
+            role: "user",
+            content: `사용할 언어는 ${selected_lang} 입니다. 위 규칙들을 지키며 끝말잇기 놀이를 시작합니다. 답변은 JSON 오브젝트로 보내주세요. 답변은 'answer' 라는 key에 담아서 보내주세요. user가 입력한 값이 유효하지 않는 값이라면 'answer'라는 key에 숫자 0을 보내주세요. 시작할 단어를 말해주세요`,
+          },
+        ];
+      }
+
+      function wordAvailibility(word) {}
+    </script>
+  </body>
+</html>
