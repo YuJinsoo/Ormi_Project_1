@@ -9,146 +9,34 @@
     <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
     <script src="./src/dataset_ko.js"></script>
     <script src="./src/functions.js"></script>
+    <script src="./src/main.js" type="module"></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <header id="header">
-      <a href="./index.html" id="logolink">
-        <img id="imglogo" src="./img/versus.png" />
-        <div class="titlelogo">VERSUS GPT</div>
-      </a>
-      <div id="language">
-        <p class="titlelogo">Language:</p>
-        <select id="langselect">
-          <option>한국어(Korean)</option>
-          <option>영어(English)</option>
-        </select>
-      </div>
-    </header>
-
-    <div id="info">
-      <h1>GPT와 겨루는 끝말잇기 한판!</h1>
-      <div>
-        게임 규칙:<br />
-        1. 실패 카운트가 2이 되는 순간 패배합니다.<br />
-        2. gpt가 적합한 단어를 말하지 않았다면, 'gpt에게 경고!' 버튼을 누르고
-        상대가 말한 단어에 이어서 단어를 말하세요.<br />
-        3. gpt API의 응답에 따라 게임을 다시 시작해야 할 수 있습니다.
-      </div>
-      <div id="buttonArea">
-        <button id="startBtn">시작</button>
-        <button id="warnBtn" disabled="true">gpt에게경고!</button>
-      </div>
-
-      <section id="userInputSection">
-        <form>
-          <!--action="post"-->
-          <input type="text" autofocus />
-          <button id="answerBtn" disabled="true">답장 보내기</button>
-        </form>
-      </section>
-    </div>
-
-    <section id="answerSection">
-      <div id="index">
-        <div class="gptSide">GPT ANSWER</div>
-        <div class="scoreboard">
-          <div>경고횟수판</div>
-          <div id="score">0:0</div>
-        </div>
-        <div class="userSide">USER ANSWER</div>
-      </div>
-      <div id="wordboard">
-        <div id="boradarea_gpt"></div>
-        <div id="boradarea_user"></div>
-      </div>
-      <div id="message"></div>
-    </section>
-
     <footer id="footer">
       <div class="footercontent">끝말잇기 게임을 즐겨주셔서 감사합니다.</div>
       <div class="footercontent">
-        요청사항이 있으시면 다음 메일로 연락주세요
+        피드백 주실 내용이 있으시면 다음 메일로 연락주세요.
       </div>
       <div class="footercontent">개발자 e-mail : realaqua23@gmail.com</div>
     </footer>
 
     <script>
-      const $selbox = document.querySelector("#langselect");
-      const $boradarea_user = document.querySelector("#boradarea_user");
+      //const $body = document.querySelector("body");
+      //const $header = headerGenerator();
+      //$body.prepend($header);
 
-      let selected_lang = $selbox.options[$selbox.selectedIndex].value;
+      //let selected_lang = $selbox.options[$selbox.selectedIndex].value;
 
       let answers = {
         gpt: [],
         user: [],
       };
 
-      const $input = document.querySelector("input");
-      const $answerBtn = document.querySelector("#answerBtn");
-
       let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
       //학습 데이터로 data 변수 세팅
       let data = [];
       data = resetData(data);
-
-      // 언어선택 이벤트
-      $selbox.addEventListener("change", (e) => {
-        // console.log(e)
-        idx = e.target.selectedIndex;
-        selected_lang = $selbox.options[$selbox.selectedIndex].value;
-
-        data = resetData(data);
-
-        $startBtn.disabled = false;
-      });
-
-      // 시작버튼 이벤트
-      const $startBtn = document.querySelector("#startBtn");
-      $startBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        console.log(e);
-        console.log(e.target);
-        e.target.disabled = true;
-
-        document.querySelector("#warnBtn").disabled = false;
-        document.querySelector("#answerBtn").disabled = false;
-
-        chatGptAPI(data);
-      });
-
-      //경고횟수 늘리는 이벤트
-      const $warnToGptBtn = document.querySelector("#warnBtn");
-      $warnToGptBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.target.disabled = true;
-        checkWarnCount("assistant");
-      });
-
-      // 답변 보내기 버튼 이벤트
-      $answerBtn.addEventListener("click", (e) => {
-        if (document.querySelector("input").value === "") {
-          alert("아무 입력 없이 클릭하면 안됩니다!");
-          return;
-        }
-        console.log(e);
-        e.preventDefault(); // 화면 멈춤. 아무런 액션이 일어나지 않음
-
-        let userInputData = $input.value;
-        let wrapInputData = sendJsonAnswer(userInputData);
-        $input.value = "";
-
-        answers.user.push(userInputData);
-        checkCorrectWord(userInputData, "user");
-        checkWarnCount();
-
-        // 학습 data 갱신
-        appendData(data, "user", wrapInputData);
-        // 태그 추가해서 내용 표현
-        answerTagAdder(userInputData, $boradarea_user);
-        // api로 내 답변 전송
-        chatGptAPI(data);
-      });
     </script>
   </body>
 </html>
