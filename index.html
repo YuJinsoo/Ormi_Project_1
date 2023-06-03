@@ -10,33 +10,39 @@
     <script src="./src/dataset_ko.js"></script>
     <script src="./src/functions.js"></script>
     <script src="./src/main.js" type="module"></script>
-    <link rel="stylesheet" href="./style.css" />
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./css/mainstyle.css" />
+    <link rel="stylesheet" href="./css/screenstyle.css" />
   </head>
   <body>
-    <footer id="footer">
-      <div class="footercontent">끝말잇기 게임을 즐겨주셔서 감사합니다.</div>
-      <div class="footercontent">
-        피드백 주실 내용이 있으시면 다음 메일로 연락주세요.
+    <section id="screenSection">
+      <div id="screen" style="overflow: hidden">
+        <label class="left">《</label>
+        <label class="right">》</label>
+        <div class="container">
+          <div class="inner">
+            <img src="./img/1.jpg" alt="" />
+          </div>
+          <div class="inner">
+            <img src="./img/2.jpg" alt="" />
+          </div>
+          <div class="inner">
+            <img src="./img/3.jpg" alt="" />
+          </div>
+        </div>
       </div>
-      <div class="footercontent">개발자 e-mail : realaqua23@gmail.com</div>
-    </footer>
 
+      <div id="btnRotate">
+        <button id="btn1" class="btnDot"></button>
+        <button id="btn2" class="btnDot"></button>
+        <button id="btn3" class="btnDot"></button>
+      </div>
+    </section>
+    <script src="./src/screen.js"></script>
     <script>
-      //const $body = document.querySelector("body");
-      //const $header = headerGenerator();
-      //$body.prepend($header);
-
-      //let selected_lang = $selbox.options[$selbox.selectedIndex].value;
-
-      let answers = {
-        gpt: [],
-        user: [],
-      };
-
-      let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
-      //학습 데이터로 data 변수 세팅
-      let data = [];
-      data = resetData(data);
+      //openLoading();
     </script>
   </body>
 </html>

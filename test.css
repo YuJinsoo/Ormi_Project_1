@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+}
+
+#screen {
+  position: relative;
+}
+.container {
+  width: 300vw; /*view port width*/
+  transition: transform 0.5s;
+}
+
+.inner {
+  width: 100vw;
+  float: left;
+  /* position: relative; */
+}
+
+.inner img {
+  width: 100%;
+  opacity: 0.5;
+  border-top: solid 2px green;
+  border-bottom: solid 2px green;
+}
+
+.left {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translate(0, -100%);
+  color: red;
+  font-weight: 700;
+  margin: 10px 0px;
+  padding: 0px 5px;
+}
+
+.right {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 100%;
+  transform: translate(-100%, -100%);
+  color: blue;
+  font-weight: 700;
+  margin: 10px 0px;
+  padding: 0px 5px;
+}
+
+#btnRotate {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

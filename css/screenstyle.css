@@ -1,0 +1,71 @@
+#screenSection {
+  min-width: 500px;
+  width: 70%;
+  margin: auto;
+}
+
+#screen {
+  position: relative;
+  height: 300px;
+}
+.container {
+  width: 300vw; /*view port width*/
+  transition: transform 0.5s;
+}
+
+.inner {
+  width: 100vw;
+  float: left;
+  /* position: relative; */
+}
+
+.inner img {
+  width: 70%;
+  height: 300px;
+  opacity: 0.5;
+}
+
+.left {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translate(0, -100%);
+  color: #aaa;
+  font-weight: 700;
+  font-size: x-large;
+  margin: 10px 0px;
+  padding: 0px 5px;
+}
+
+.right {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 100%;
+  transform: translate(-100%, -100%);
+  color: #aaa;
+  font-weight: 700;
+  font-size: x-large;
+  margin: 10px 0px;
+  padding: 0px 5px;
+}
+
+#btnRotate {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  border-top: solid 2px #eee;
+}
+
+.btnDot {
+  margin: 5px;
+  width: 8px;
+  height: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #eee;
+}
+
+.currentscreenbtn {
+  background-color: #fdf4e8;
+}

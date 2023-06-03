@@ -3,6 +3,7 @@
 
 export function answerSectionGenerator() {
   let resultNode = document.createElement("section");
+  resultNode.id = "answerSection";
   let tmp;
 
   // id index 생성

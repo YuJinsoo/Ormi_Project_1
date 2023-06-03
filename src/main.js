@@ -10,10 +10,20 @@ const $infoSection = infoSectionGenerator();
 const $ansSection = answerSectionGenerator();
 const $footer = footerGenerator();
 
-$body.append($header);
+$body.prepend($header);
 $body.append($infoSection);
 $body.append($ansSection);
 $body.append($footer);
+
+let answers = {
+  gpt: [],
+  user: [],
+};
+
+let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
+//학습 데이터로 data 변수 세팅
+let data = [];
+data = resetData(data);
 
 // 이벤트 발생할 node들 선택
 const $selbox = document.querySelector("#langselect");

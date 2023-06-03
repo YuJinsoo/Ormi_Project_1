@@ -11,7 +11,7 @@ export function infoSectionGenerator() {
 
   tmp = document.createElement("div");
   tmp.innerHTML =
-    "게임 규칙:<br /> 1. 실패 카운트가 2이 되는 순간 패배합니다.<br /> 2. gpt가 적합한 단어를 말하지 않았다면, 'gpt에게 경고!' 버튼을 누르고 상대가 말한 단어에 이어서 단어를 말하세요.<br /> 3. gpt API의 응답에 따라 게임을 다시 시작해야 할 수 있습니다.";
+    "게임 규칙:<br /> 1. 실패 카운트가 2이 되는 순간 패배합니다.<br /> 2. gpt가 적합한 단어를 말하지 않았다면, 'gpt에게 경고!' 버튼을 눌러주세요.<br /> 3. 상대가 말한 단어에 이어서 단어를 말하세요.<br /> 4. gpt API의 응답에 따라 게임을 다시 시작해야 할 수 있습니다.";
   resultNode.append(tmp);
 
   // id buttonArea 생성
