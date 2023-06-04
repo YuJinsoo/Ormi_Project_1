@@ -79,32 +79,25 @@ body {
   margin: auto;
 }
 
-#buttonArea {
+#userInput {
   display: flex;
-  justify-content: center;
-  /* margin: 10px; */
+  flex-direction: row;
+  justify-content: space-between;
   padding: 5px;
   border-top: solid 2px #ddd;
+  /* margin: 10px; */
 }
-
 #startBtn,
 #warnBtn {
-  margin: 10px;
+  margin: 0px;
   border: 1px solid #f0f0f0;
   border-radius: 3px;
 }
 
 #answerBtn {
-  margin: 0 5px;
+  margin: 0px;
   border: 1px solid #f0f0f0;
   border-radius: 3px;
-}
-
-#userInput {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  /* margin: 10px; */
 }
 
 #answerSection {
@@ -113,66 +106,6 @@ body {
   justify-content: center;
   align-items: center;
   margin: 10px 0px;
-}
-/* 점수판, 단어판 부분 */
-#index {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 70%;
-  border-left: solid 2px #eee;
-  border-top: solid 2px #eee;
-  border-right: solid 2px #eee;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.gptSide .userSide {
-  display: flex;
-}
-.scoreboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.score {
-  margin: 10px;
-}
-
-#wordboard {
-  display: flex;
-  flex-direction: row;
-  min-width: 500px;
-  width: 70%;
-  height: 300px;
-  background-color: #fdf4e8;
-  border: solid 2px #eee;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  overflow: auto;
-}
-
-#boardarea_gpt,
-#boardarea_user {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-#boardarea_gpt :first-child,
-#boardarea_user :first-child {
-  border-bottom: solid 1px #aaa;
-}
-
-.answer {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-
-  margin: 5px 10px;
 }
 
 /**/

@@ -5,16 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>my mini gpt project</title>
-    <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
-    <script src="./src/dataset_ko.js"></script>
-    <script src="./src/functions.js"></script>
     <script src="./src/main.js" type="module"></script>
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./css/mainstyle.css" />
     <link rel="stylesheet" href="./css/screenstyle.css" />
+    <link rel="stylesheet" href="./css/buttonstyle.css" />
+    <link rel="stylesheet" href="./css/scoreboardstyle.css" />
   </head>
   <body>
     <section id="screenSection">
@@ -24,9 +22,21 @@
         <div class="container">
           <div class="inner">
             <img src="./img/1.jpg" alt="" />
+            <h2 class="screentitle">GPT와 겨루는 끝말잇기 한판!</h2>
+            <div class="screentext">
+              gpt와 끝말잇기를 해서 승리해보세요!<br />게임규칙을 보려면 다음
+              화면을 확인해주세요!
+            </div>
           </div>
           <div class="inner">
             <img src="./img/2.jpg" alt="" />
+            <h2 class="screentitle">게임규칙 설명!</h2>
+            <div class="screentext">
+              1. 실패 카운트가 2이 되는 순간 패배합니다.<br />
+              2. gpt의 단어가 이상하다면 'gpt에게 경고!' 버튼을 눌러주세요.<br />
+              3. 상대가 말한 단어에 이어서 단어를 말하세요.<br />
+              4. gpt API의 응답에 따라 게임을 다시 시작해야 할 수 있습니다.<br />
+            </div>
           </div>
           <div class="inner">
             <img src="./img/3.jpg" alt="" />
@@ -39,8 +49,15 @@
         <button id="btn2" class="btnDot"></button>
         <button id="btn3" class="btnDot"></button>
       </div>
+
+      <form type="post">
+        <input type="text" autofocus />
+        <button id="answerBtn" disabled="true">답장 보내기</button>
+      </form>
     </section>
+    <script src="./src/functions.js" type="module"></script>
     <script src="./src/screen.js"></script>
+    <script src="./src/dataset_ko.js"></script>
     <script>
       //openLoading();
     </script>

@@ -2,6 +2,13 @@ const count_max = 2;
 let gpt_count = 0;
 let user_count = 0;
 
+let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
+
+let answers = {
+  gpt: [],
+  user: [],
+};
+
 // 입력한 텍스트 전달 및 응답 수신
 function chatGptAPI(data) {
   fetch(url, {
@@ -15,15 +22,13 @@ function chatGptAPI(data) {
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      //console.log(res.choices[0].message.content);
-
       let api_content = res.choices[0].message.content;
 
       if (api_content.indexOf("{") === -1 || api_content.indexOf("}") === -1) {
         throw new Error(`GPT API의 응답 형식이 맞지 않습니다. ${api_content}`);
       }
 
-      result = parseJsonAnswer(api_content);
+      let result = parseJsonAnswer(api_content);
       if (result === "") {
         return;
       }
@@ -31,12 +36,11 @@ function chatGptAPI(data) {
       //document.querySelector("#contents").innerText += "\n" + result;
       appendData(data, "assistant", api_content);
       //const $gptAnswerList = document.querySelector(".gptPart");
-      answerTagAdder(result, document.querySelector("#boradarea_gpt"));
+      answerTagAdder(result, document.querySelector("#boardarea_gpt"));
 
       document.querySelector("#warnBtn").disabled = false;
 
       checkCorrectWord(result, "assistant");
-      checkWarnCount();
       printGptMessage(api_content);
     })
     .catch((e) => {
@@ -75,6 +79,7 @@ function answerTagAdder(text, parentNode) {
   obj.innerText = text;
 
   console.log(obj);
+  console.log(parentNode);
   parentNode.prepend(obj);
 }
 
@@ -143,45 +148,15 @@ function printGptMessage(text) {
   mes.innerText = text;
 }
 
-//로딩창...
-function openLoading() {
-  let maskHeight = $(document).height();
-  console.log(maskHeight);
-  let maskWidth = document.maskWidth;
-
-  let mask = document.createElement("div");
-  mask.id = "mask";
-
-  let loadingImg = document.createElement("div");
-  loadingImg.id = "loadingImg";
-
-  let tmp = document.createElement("img");
-  tmp.src = "../img/Hourglass.gif";
-  loadingImg.append(tmp);
-
-  //화면에 레이어 추가
-  $("body").append(mask).append(loadingImg);
-
-  //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
-  $("#mask").css({
-    width: maskWidth,
-    height: maskHeight,
-    opacity: "0.3",
-  });
-
-  let h = maskHeight / 2;
-  $("#loadingImg").css({
-    top: maskHeight,
-  });
-
-  //마스크 표시
-  $("#mask").show();
-
-  //로딩중 이미지 표시
-  $("#loadingImg").show();
-}
-
-function closeLoadingWithMask() {
-  $("#mask, #loadingImg").hide();
-  $("#mask, #loadingImg").remove();
-}
+export {
+  chatGptAPI,
+  sendJsonAnswer,
+  answerTagAdder,
+  checkCorrectWord,
+  checkWarnCount,
+  changeScoreTag,
+  appendData,
+  printGptMessage,
+  url,
+  answers,
+};

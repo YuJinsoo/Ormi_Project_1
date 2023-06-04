@@ -1,0 +1,44 @@
+/* button */
+.btndafault {
+  position: relative;
+  border: none;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-family: "paybooc-Light", sans-serif;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.btndafault-outline {
+  position: relative;
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-family: "paybooc-Light", sans-serif;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.btnstyle {
+  background-color: #cc8c3f;
+  color: #ffeee4;
+}
+
+.btnstyle-outline {
+  border: 3px solid #cc8c3f;
+  color: #b8b8b8;
+}
+
+.btnstyle-outline:hover {
+  background-color: #cc8c3f;
+  color: #ffeee4;
+}
+
+.btnstyle:disabled {
+  background-color: #ddd;
+  color: #aaa;
+}

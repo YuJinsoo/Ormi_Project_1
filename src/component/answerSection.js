@@ -36,11 +36,11 @@ export function answerSectionGenerator() {
   board.id = "wordboard";
 
   tmp = document.createElement("div");
-  tmp.id = "boradarea_gpt";
+  tmp.id = "boardarea_gpt";
   board.append(tmp);
 
   tmp = document.createElement("div");
-  tmp.id = "boradarea_user";
+  tmp.id = "boardarea_user";
   board.append(tmp);
 
   resultNode.append(index);
@@ -48,7 +48,7 @@ export function answerSectionGenerator() {
 
   //
   tmp = document.createElement("div");
-  tmp.classList.add("message");
+  tmp.id = "message";
   resultNode.append(tmp);
 
   return resultNode;
