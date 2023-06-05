@@ -27,8 +27,9 @@
 
 ## 추가 개발 계획
 
-- gpt API의 응답 기다리는 동안 로딩 화면 개발
-- document의 노드를 javascript로 모듈화
+- ~~gpt API의 응답 기다리는 동안 로딩 화면 개발~~ 개발완료
+- ~~document의 노드를 javascript로 모듈화~~ 개발완료
 - 영어 모드
-- javascript 파일 모듈화
+- ~~javascript 파일 모듈화~~ 개발완료
 - 사전 크롤러 (selenium 사용해보려고 함)
+- alert 창 꾸미기

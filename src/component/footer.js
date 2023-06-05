@@ -12,11 +12,12 @@ export function footerGenerator() {
   resultNode.append(tmp);
   tmp = document.createElement("div");
   tmp.classList.add("footercontent");
-  tmp.innerText = "피드백 주실 내용이 있으시면 다음 메일로 연락주세요.";
+  tmp.innerText = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
   resultNode.append(tmp);
   tmp = document.createElement("div");
   tmp.classList.add("footercontent");
-  tmp.innerText = "개발자 e-mail : realaqua23@gmail.com";
+  tmp.innerText =
+    "github repository : https://github.com/YuJinsoo/Ormi_Project_1";
   resultNode.append(tmp);
 
   return resultNode;
@@ -26,8 +27,8 @@ export function footerGenerator() {
 <footer id="footer">
     <div class="footercontent">끝말잇기 게임을 즐겨주셔서 감사합니다.</div>
     <div class="footercontent">
-        피드백 주실 내용이 있으시면 다음 메일로 연락주세요.
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     </div>
-    <div class="footercontent">개발자 e-mail : realaqua23@gmail.com</div>
+    <div class="footercontent">github repository : https://github.com/YuJinsoo/Ormi_Project_1</div>
 </footer> 
 */

@@ -1,7 +1,7 @@
 //로딩창...
 function openLoading() {
+  console.log("open loading");
   let maskHeight = $(document).height();
-  console.log(maskHeight);
   let maskWidth = document.maskWidth;
 
   let mask = document.createElement("div");
@@ -25,8 +25,9 @@ function openLoading() {
   });
 
   let h = maskHeight / 2;
+  //console.log(h);
   $("#loadingImg").css({
-    top: maskHeight,
+    top: h,
   });
 
   //마스크 표시
@@ -36,9 +37,9 @@ function openLoading() {
   $("#loadingImg").show();
 }
 
-function closeLoadingWithMask() {
+function closeLoading() {
   $("#mask, #loadingImg").hide();
   $("#mask, #loadingImg").remove();
 }
 
-export { openLoading, closeLoadingWithMask };
+export { openLoading, closeLoading };

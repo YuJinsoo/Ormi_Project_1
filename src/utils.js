@@ -1,3 +1,5 @@
+import { openLoading, closeLoading } from "./loading.js";
+
 const count_max = 2;
 let gpt_count = 0;
 let user_count = 0;
@@ -21,7 +23,6 @@ function chatGptAPI(data) {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       let api_content = res.choices[0].message.content;
 
       if (api_content.indexOf("{") === -1 || api_content.indexOf("}") === -1) {
@@ -33,9 +34,7 @@ function chatGptAPI(data) {
         return;
       }
 
-      //document.querySelector("#contents").innerText += "\n" + result;
       appendData(data, "assistant", api_content);
-      //const $gptAnswerList = document.querySelector(".gptPart");
       answerTagAdder(result, document.querySelector("#boardarea_gpt"));
 
       document.querySelector("#warnBtn").disabled = false;
@@ -46,6 +45,9 @@ function chatGptAPI(data) {
     .catch((e) => {
       console.log(e);
       alert("새로고침 후 게임을 다시 시작해 주세요!");
+    })
+    .finally(() => {
+      closeLoading();
     });
 }
 
@@ -68,8 +70,7 @@ function parseJsonAnswer(text) {
 }
 
 function sendJsonAnswer(user_input) {
-  let text = `{'answer':'${user_input}'}`;
-  console.log(text);
+  let text = `{"answer":"${user_input}"}`;
   return text;
 }
 
@@ -81,6 +82,7 @@ function answerTagAdder(text, parentNode) {
   console.log(obj);
   console.log(parentNode);
   parentNode.prepend(obj);
+  return;
 }
 
 // 제시한 단어가 앞단어와 맞는지 확인
@@ -91,7 +93,7 @@ function checkCorrectWord(word, side) {
   let first_letter;
   if (side === "user") {
     latest_word = answers.gpt.slice(-1).pop();
-    console.log(latest_word);
+    //console.log(latest_word);
 
     last_letter = latest_word.charAt(latest_word.length - 1);
     first_letter = word.slice(0, 1);
@@ -110,6 +112,7 @@ function checkCorrectWord(word, side) {
   if (result === false) {
     checkWarnCount(side);
   }
+  return;
 }
 
 // checkCorrectWord()의 result가 false 일때 경고 점수 카운트, 승리알림
@@ -129,11 +132,13 @@ function checkWarnCount(side) {
     alert("user 패배!");
   }
   console.log(`gpt : ${gpt_count}, user: ${user_count}`);
+  return;
 }
 
 function changeScoreTag() {
   let socre = document.querySelector("#score");
   socre.innerText = `${gpt_count} : ${user_count}`;
+  return;
 }
 
 // gpt와 의 대화 data 추가하는 함수
@@ -146,6 +151,7 @@ function appendData(data, side, dialogdata) {
 function printGptMessage(text) {
   let mes = document.querySelector("#message");
   mes.innerText = text;
+  return;
 }
 
 export {

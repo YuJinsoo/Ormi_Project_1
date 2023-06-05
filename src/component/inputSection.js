@@ -37,30 +37,51 @@ export function inputSectionGenerator() {
   let inputs = document.createElement("div");
   inputs.id = "userInput";
 
+  let buttons = document.createElement("div");
+  buttons.id = "buttonArea";
+
   tmp = document.createElement("button");
   tmp.id = "startBtn";
   tmp.classList.add("btndafault", "btnstyle");
-  tmp.innerText = "시작";
-  inputs.append(tmp);
-
-  tmp = document.createElement("input");
-  tmp.type = "text";
-  inputs.append(tmp);
+  tmp.textContent = "시작";
+  buttons.append(tmp);
 
   tmp = document.createElement("button");
-  tmp.id = "answerBtn";
+  tmp.id = "regameBtn";
   tmp.classList.add("btndafault", "btnstyle");
-  tmp.disabled = "true";
-  tmp.innerText = "답장 보내기";
-  inputs.append(tmp);
+
+  let tmp2 = document.createElement("img");
+  tmp2.src = "../../img/refresh.png";
+  tmp2.style.width = "30px";
+  tmp2.style.objectFit = "contain";
+  tmp.append(tmp2);
+  buttons.append(tmp);
 
   tmp = document.createElement("button");
   tmp.id = "warnBtn";
   tmp.classList.add("btndafault", "btnstyle");
   tmp.disabled = "true";
   tmp.innerText = "gpt에게경고!";
-  inputs.append(tmp);
-  //resultNode.append(buttons);
+  buttons.append(tmp);
+  inputs.append(buttons);
+
+  tmp2 = document.createElement("form");
+  tmp2.type = "text";
+  tmp2.autofocus = true;
+
+  tmp = document.createElement("input");
+  tmp.type = "text";
+  tmp.placeholder = "단어를 입력해주세요";
+  tmp2.append(tmp);
+
+  tmp = document.createElement("button");
+  tmp.id = "answerBtn";
+  tmp.classList.add("btndafault", "btnstyle");
+  tmp.disabled = "true";
+  tmp.innerText = "답장 send";
+  tmp2.append(tmp);
+  inputs.append(tmp2);
+
   resultNode.append(inputs);
 
   return resultNode;

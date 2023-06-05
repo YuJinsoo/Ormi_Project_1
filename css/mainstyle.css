@@ -73,7 +73,7 @@ body {
   color: #777;
 }
 
-/* infosection 요소 부분*/
+/* inputSection 요소 부분*/
 #infoSection {
   width: 70%;
   margin: auto;
@@ -87,6 +87,27 @@ body {
   border-top: solid 2px #ddd;
   /* margin: 10px; */
 }
+
+#buttonArea {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+#userInput > form {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+#userInput > form > input {
+  margin: 0 5px 0 5px;
+  height: 93%;
+  border: 2px solid #cc8c3f;
+}
+
 #startBtn,
 #warnBtn {
   margin: 0px;
@@ -108,7 +129,7 @@ body {
   margin: 10px 0px;
 }
 
-/**/
+/* loading 화면*/
 #mask {
   position: absolute;
   z-index: 9000;
@@ -123,7 +144,10 @@ body {
 
 #loadingImg > img {
   position: absolute;
+  top: 50%;
+  left: 50%;
   z-index: 9000;
-  display: block;
-  margin: 0px auto;
+  opacity: 0.7;
+  margin: auto;
+  transform: translate(-50%, -50%);
 }
