@@ -23,6 +23,7 @@ function chatGptAPI(data) {
   })
     .then((res) => res.json())
     .then((res) => {
+      console.log(res);
       let api_content = res.choices[0].message.content;
 
       if (api_content.indexOf("{") === -1 || api_content.indexOf("}") === -1) {

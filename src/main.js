@@ -30,25 +30,22 @@ const $regameBtn = document.querySelector("#regameBtn");
 const $warnToGptBtn = document.querySelector("#warnBtn");
 const $boardarea_user = document.querySelector("#boardarea_user");
 
-let selected_lang = $selbox.options[$selbox.selectedIndex].value;
-console.log(selected_lang);
+let selected_lang = "한국어(Korean)";
 //학습 데이터로 data 변수 세팅
 let data = [];
-
-if (selected_lang === "한국어(Korean)") {
-  data = resetDataKo(data);
-} else {
-  data = resetDataEn(data);
-}
+data = resetDataKo(data);
 
 // 언어선택 이벤트
 $selbox.addEventListener("change", (e) => {
   // console.log(e)
   //idx = e.target.selectedIndex;
   selected_lang = $selbox.options[$selbox.selectedIndex].value;
-
-  data = resetData(data);
-
+  if (selected_lang === "한국어(Korean)") {
+    data = resetDataKo(data);
+  } else {
+    data = resetDataEn(data);
+  }
+  console.log(data);
   $startBtn.disabled = false;
 });
 
