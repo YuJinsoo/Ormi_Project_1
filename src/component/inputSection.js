@@ -37,26 +37,30 @@ export function inputSectionGenerator() {
   let inputs = document.createElement("div");
   inputs.id = "userInput";
 
+  // 시작, 새로고침, 경고 버튼 area
   let buttons = document.createElement("div");
   buttons.id = "buttonArea";
 
+  // 시작버튼
   tmp = document.createElement("button");
   tmp.id = "startBtn";
   tmp.classList.add("btndafault", "btnstyle");
   tmp.textContent = "시작";
   buttons.append(tmp);
 
+  // 새로고침 버튼
   tmp = document.createElement("button");
   tmp.id = "regameBtn";
   tmp.classList.add("btndafault", "btnstyle");
 
   let tmp2 = document.createElement("img");
-  tmp2.src = "../../img/refresh.png";
+  tmp2.src = "./img/refresh.png";
   tmp2.style.width = "30px";
   tmp2.style.objectFit = "contain";
   tmp.append(tmp2);
   buttons.append(tmp);
 
+  //경고버튼
   tmp = document.createElement("button");
   tmp.id = "warnBtn";
   tmp.classList.add("btndafault", "btnstyle");
@@ -65,15 +69,18 @@ export function inputSectionGenerator() {
   buttons.append(tmp);
   inputs.append(buttons);
 
+  // form 생성. form 안쓰면 엔터키 처리를 keydown 이벤트로 처리해야함
   tmp2 = document.createElement("form");
   tmp2.type = "text";
   tmp2.autofocus = true;
 
+  // input 생성
   tmp = document.createElement("input");
   tmp.type = "text";
   tmp.placeholder = "단어를 입력해주세요";
   tmp2.append(tmp);
 
+  //전송버튼
   tmp = document.createElement("button");
   tmp.id = "answerBtn";
   tmp.classList.add("btndafault", "btnstyle");

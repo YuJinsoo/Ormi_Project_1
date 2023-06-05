@@ -5,6 +5,9 @@ import { footerGenerator } from "./component/footer.js";
 
 import * as utils from "./utils.js";
 import { openLoading, closeLoading } from "./loading.js";
+import { resetDataKo } from "./dataset/dataset_ko.js";
+import { resetDataEn } from "./dataset/dataset_en.js";
+
 // import "./dataset_ko.js";
 
 // html 생성
@@ -19,19 +22,24 @@ $body.append($infoSection);
 $body.append($ansSection);
 $body.append($footer);
 
-let selected_lang;
-
-//학습 데이터로 data 변수 세팅
-let data = [];
-data = resetData(data);
-
-// 이벤트 발생할 node들 선택
+// 이벤트 발생할 node들 get
 const $selbox = document.querySelector("#langselect");
 const $input = document.querySelector("input");
 const $answerBtn = document.querySelector("#answerBtn");
 const $regameBtn = document.querySelector("#regameBtn");
 const $warnToGptBtn = document.querySelector("#warnBtn");
 const $boardarea_user = document.querySelector("#boardarea_user");
+
+let selected_lang = $selbox.options[$selbox.selectedIndex].value;
+console.log(selected_lang);
+//학습 데이터로 data 변수 세팅
+let data = [];
+
+if (selected_lang === "한국어(Korean)") {
+  data = resetDataKo(data);
+} else {
+  data = resetDataEn(data);
+}
 
 // 언어선택 이벤트
 $selbox.addEventListener("change", (e) => {
@@ -96,5 +104,5 @@ $warnToGptBtn.addEventListener("click", (e) => {
 // regame 이벤트
 $regameBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  location.reload();
+  window.location.reload();
 });

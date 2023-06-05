@@ -1,4 +1,4 @@
-function resetData(data) {
+export function resetDataKo(data) {
   data = [
     {
       role: "system",
