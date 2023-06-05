@@ -27,7 +27,9 @@ function chatGptAPI(data) {
       let api_content = res.choices[0].message.content;
 
       if (api_content.indexOf("{") === -1 || api_content.indexOf("}") === -1) {
-        throw new Error(`GPT API의 응답 형식이 맞지 않습니다. ${api_content}`);
+        throw new Error(
+          `GPT API의 응답 형식이 맞지 않습니다. message: ${api_content}`
+        );
       }
 
       let result = parseJsonAnswer(api_content);
@@ -45,7 +47,11 @@ function chatGptAPI(data) {
     })
     .catch((e) => {
       console.log(e);
-      alert("새로고침 후 게임을 다시 시작해 주세요!");
+      Swal.fire({
+        icon: "warning",
+        title: "GPT 메시지",
+        text: "GPT의 메시지를 확인해주세요! (새로시작 해야할 수 있습니다)",
+      });
     })
     .finally(() => {
       closeLoading();
@@ -64,7 +70,7 @@ function parseJsonAnswer(text) {
     .slice(text.indexOf("{"), text.indexOf("}") + 1)
     .replaceAll("'", '"');
 
-  console.log(tmp_text);
+  //console.log(tmp_text);
   let json_obj = JSON.parse(tmp_text);
   answers.gpt.push(json_obj.answer);
   return answers.gpt[answers.gpt.length - 1];
@@ -80,8 +86,6 @@ function answerTagAdder(text, parentNode) {
   obj.classList.add("answer");
   obj.innerText = text;
 
-  console.log(obj);
-  console.log(parentNode);
   parentNode.prepend(obj);
   return;
 }
@@ -130,11 +134,19 @@ function checkWarnCount(side) {
   changeScoreTag();
 
   if (gpt_count >= count_max) {
-    alert("user 승리!");
+    Swal.fire({
+      icon: "success",
+      title: "승리!",
+      text: "USER 승리! 축하합니다!",
+    });
   }
 
   if (user_count >= count_max) {
-    alert("user 패배!");
+    Swal.fire({
+      icon: "warning",
+      title: "패배!",
+      text: "GPT의 승리입니다. 다시 도전해보세요!",
+    });
   }
   console.log(`gpt : ${gpt_count}, user: ${user_count}`);
   return;
@@ -149,19 +161,24 @@ function changeScoreTag() {
 
 // 단어가 중복되었는지 확인
 function checkDuplicated(word) {
-  let result = true;
+  let result = false;
   let check1 = 0;
   let check2 = 0;
 
-  if ((answers.gpt.length === 1, answers.user.length === 1)) {
+  if (answers.gpt.length === 1 || answers.user.length === 1) {
     return result;
   }
-  check1 = String(answers.gpt).indexOf(word);
-  check2 = String(answers.user).indexOf(word);
+  check1 = String(answers.gpt.slice(0, -1)).indexOf(word);
+  check2 = String(answers.user.slice(0, -1)).indexOf(word);
 
+  console.log(answers);
   if (check1 !== -1 || check2 !== -1) {
-    alert("nonono");
-    result = false;
+    Swal.fire({
+      icon: "error",
+      title: "단어 입력",
+      text: "중복된 단어입니다.",
+    });
+    result = true;
   }
 
   return result;

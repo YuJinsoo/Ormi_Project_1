@@ -5,6 +5,7 @@
   justify-content: space-around;
   align-items: center;
   width: 70%;
+  min-width: 500px;
   border-left: solid 2px #eee;
   border-top: solid 2px #eee;
   border-right: solid 2px #eee;

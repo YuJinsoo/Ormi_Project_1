@@ -76,6 +76,7 @@ body {
 /* inputSection 요소 부분*/
 #infoSection {
   width: 70%;
+  min-width: 500px;
   margin: auto;
 }
 

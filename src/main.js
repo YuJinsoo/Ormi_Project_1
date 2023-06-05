@@ -66,11 +66,15 @@ $startBtn.addEventListener("click", (e) => {
 
 // 답변 보내기 버튼 이벤트
 $answerBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // 화면 멈춤. 아무런 액션이 일어나지 않음
   if ($input.value === "") {
-    alert("아무 입력 없이 클릭하면 안됩니다!");
+    Swal.fire({
+      icon: "error",
+      title: "단어 입력",
+      text: "아무 입력 없이 클릭하면 안됩니다!",
+    });
     return;
   }
-  e.preventDefault(); // 화면 멈춤. 아무런 액션이 일어나지 않음
   openLoading();
   console.log(e);
   console.log($boardarea_user);
