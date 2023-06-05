@@ -76,7 +76,7 @@ $answerBtn.addEventListener("click", (e) => {
   console.log($boardarea_user);
 
   let userInputData = $input.value;
-  let wrapInputData = utils.sendJsonAnswer(userInputData);
+  let wrapInputData = utils.wrapToJsonForm(userInputData);
   $input.value = "";
 
   utils.answers.user.push(userInputData);

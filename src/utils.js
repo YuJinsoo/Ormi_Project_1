@@ -59,7 +59,7 @@ function parseJsonAnswer(text) {
     text = text.replaceAll("\\", "");
   }
 
-  // JSON 형식은 모두 큰따옴표로 묶어줘야 함
+  // JSON 형식은 큰따옴표로 묶어줘야 함
   let tmp_text = text
     .slice(text.indexOf("{"), text.indexOf("}") + 1)
     .replaceAll("'", '"');
@@ -70,7 +70,7 @@ function parseJsonAnswer(text) {
   return answers.gpt[answers.gpt.length - 1];
 }
 
-function sendJsonAnswer(user_input) {
+function wrapToJsonForm(user_input) {
   let text = `{"answer":"${user_input}"}`;
   return text;
 }
@@ -86,7 +86,7 @@ function answerTagAdder(text, parentNode) {
   return;
 }
 
-// 제시한 단어가 앞단어와 맞는지 확인
+// 제시한 단어가 적절한 단어인지 확인
 function checkCorrectWord(word, side) {
   let latest_word;
   let result;
@@ -113,6 +113,10 @@ function checkCorrectWord(word, side) {
   if (result === false) {
     checkWarnCount(side);
   }
+
+  if (checkDuplicated(word)) {
+    checkWarnCount(side);
+  }
   return;
 }
 
@@ -136,10 +140,31 @@ function checkWarnCount(side) {
   return;
 }
 
+// 경고점수 태그
 function changeScoreTag() {
   let socre = document.querySelector("#score");
   socre.innerText = `${gpt_count} : ${user_count}`;
   return;
+}
+
+// 단어가 중복되었는지 확인
+function checkDuplicated(word) {
+  let result = true;
+  let check1 = 0;
+  let check2 = 0;
+
+  if ((answers.gpt.length === 1, answers.user.length === 1)) {
+    return result;
+  }
+  check1 = String(answers.gpt).indexOf(word);
+  check2 = String(answers.user).indexOf(word);
+
+  if (check1 !== -1 || check2 !== -1) {
+    alert("nonono");
+    result = false;
+  }
+
+  return result;
 }
 
 // gpt와 의 대화 data 추가하는 함수
@@ -149,6 +174,7 @@ function appendData(data, side, dialogdata) {
   return data;
 }
 
+//api 메시지 출력
 function printGptMessage(text) {
   let mes = document.querySelector("#message");
   mes.innerText = text;
@@ -157,13 +183,14 @@ function printGptMessage(text) {
 
 export {
   chatGptAPI,
-  sendJsonAnswer,
+  wrapToJsonForm,
   answerTagAdder,
   checkCorrectWord,
   checkWarnCount,
   changeScoreTag,
   appendData,
   printGptMessage,
+  checkDuplicated,
   url,
   answers,
 };
