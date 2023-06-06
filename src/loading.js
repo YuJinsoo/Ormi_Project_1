@@ -1,6 +1,5 @@
 //로딩창...
 function openLoading() {
-  console.log("open loading");
   let maskHeight = $(document).height();
   let maskWidth = document.maskWidth;
 

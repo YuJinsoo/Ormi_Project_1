@@ -21,13 +21,12 @@
 
 .inner img {
   width: 70%;
-  height: 300px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .screentitle {
   position: absolute;
-  top: 30%;
+  top: 20%;
   padding: 0px 100px;
   z-index: 10;
   margin: 0px;
@@ -35,7 +34,7 @@
 
 .screentext {
   position: absolute;
-  top: 45%;
+  top: 30%;
   z-index: 10;
   padding: 0px 100px;
 }
@@ -50,8 +49,6 @@
   font-size: x-large;
   margin: 10px 0px;
   padding: 5px 5px;
-  background-color: white;
-  opacity: 0.5;
 }
 
 .right {
@@ -65,8 +62,6 @@
   font-size: x-large;
   margin: 10px 0px;
   padding: 5px 5px;
-  background-color: white;
-  opacity: 0.5;
 }
 
 #btnRotate {

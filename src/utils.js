@@ -1,12 +1,14 @@
 import { openLoading, closeLoading } from "./loading.js";
+import { resetDataKo } from "./dataset/dataset_ko.js";
+import { resetDataEn } from "./dataset/dataset_en.js";
 
 const count_max = 2;
 let gpt_count = 0;
 let user_count = 0;
 
-let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
+const url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
 
-let answers = {
+const answers = {
   gpt: [],
   user: [],
 };
@@ -23,7 +25,6 @@ function chatGptAPI(data) {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       let api_content = res.choices[0].message.content;
 
       if (api_content.indexOf("{") === -1 || api_content.indexOf("}") === -1) {
@@ -46,11 +47,10 @@ function chatGptAPI(data) {
       printGptMessage(api_content);
     })
     .catch((e) => {
-      console.log(e);
       Swal.fire({
         icon: "warning",
         title: "GPT 메시지",
-        text: "GPT의 메시지를 확인해주세요! (새로시작 해야할 수 있습니다)",
+        text: `GPT의 메시지를 확인해주세요! (새로시작 해야할 수 있습니다) ${e}`,
       });
     })
     .finally(() => {
@@ -70,7 +70,6 @@ function parseJsonAnswer(text) {
     .slice(text.indexOf("{"), text.indexOf("}") + 1)
     .replaceAll("'", '"');
 
-  //console.log(tmp_text);
   let json_obj = JSON.parse(tmp_text);
   answers.gpt.push(json_obj.answer);
   return answers.gpt[answers.gpt.length - 1];
@@ -84,7 +83,8 @@ function wrapToJsonForm(user_input) {
 function answerTagAdder(text, parentNode) {
   let obj = document.createElement("p");
   obj.classList.add("answer");
-  obj.innerText = text;
+  obj.innerHTML = `${text.slice(0, -1)}<strong>${text.slice(-1)}</strong>`;
+  //obj.innerText = text;
 
   parentNode.prepend(obj);
   return;
@@ -98,7 +98,6 @@ function checkCorrectWord(word, side) {
   let first_letter;
   if (side === "user") {
     latest_word = answers.gpt.slice(-1).pop();
-    //console.log(latest_word);
 
     last_letter = latest_word.charAt(latest_word.length - 1);
     first_letter = word.slice(0, 1);
@@ -171,7 +170,6 @@ function checkDuplicated(word) {
   check1 = String(answers.gpt.slice(0, -1)).indexOf(word);
   check2 = String(answers.user.slice(0, -1)).indexOf(word);
 
-  console.log(answers);
   if (check1 !== -1 || check2 !== -1) {
     Swal.fire({
       icon: "error",
@@ -198,6 +196,21 @@ function printGptMessage(text) {
   return;
 }
 
+// 게임 시작시 필요한 데이터 세팅
+function gameStartSetting(data, selected_lang) {
+  answers.gpt = [];
+  answers.user = [];
+  user_count = 0;
+  gpt_count = 0;
+
+  if (selected_lang === "한국어(Korean)") {
+    data = resetDataKo(data);
+  } else {
+    data = resetDataEn(data);
+  }
+  return data;
+}
+
 export {
   chatGptAPI,
   wrapToJsonForm,
@@ -208,6 +221,7 @@ export {
   appendData,
   printGptMessage,
   checkDuplicated,
+  gameStartSetting,
   url,
   answers,
 };

@@ -8,8 +8,6 @@ import { openLoading, closeLoading } from "./loading.js";
 import { resetDataKo } from "./dataset/dataset_ko.js";
 import { resetDataEn } from "./dataset/dataset_en.js";
 
-// import "./dataset_ko.js";
-
 // html 생성
 const $body = document.querySelector("body");
 const $header = headerGenerator();
@@ -33,20 +31,12 @@ const $boardarea_user = document.querySelector("#boardarea_user");
 let selected_lang = "한국어(Korean)";
 //학습 데이터로 data 변수 세팅
 let data = [];
-data = resetDataKo(data);
+data = utils.gameStartSetting(data, selected_lang);
 
 // 언어선택 이벤트
 $selbox.addEventListener("change", (e) => {
-  // console.log(e)
-  //idx = e.target.selectedIndex;
   selected_lang = $selbox.options[$selbox.selectedIndex].value;
-  if (selected_lang === "한국어(Korean)") {
-    data = resetDataKo(data);
-  } else {
-    data = resetDataEn(data);
-  }
-  console.log(data);
-  $startBtn.disabled = false;
+  $regameBtn.click();
 });
 
 // 시작버튼 이벤트
@@ -54,8 +44,6 @@ const $startBtn = document.querySelector("#startBtn");
 $startBtn.addEventListener("click", (e) => {
   e.preventDefault();
   openLoading();
-  console.log(e);
-  console.log(e.target);
   e.target.disabled = true;
 
   document.querySelector("#warnBtn").disabled = false;
@@ -76,9 +64,6 @@ $answerBtn.addEventListener("click", (e) => {
     return;
   }
   openLoading();
-  console.log(e);
-  console.log($boardarea_user);
-
   let userInputData = $input.value;
   let wrapInputData = utils.wrapToJsonForm(userInputData);
   $input.value = "";
@@ -102,8 +87,25 @@ $warnToGptBtn.addEventListener("click", (e) => {
   utils.checkWarnCount("assistant");
 });
 
-// regame 이벤트
+// 다시시작 버튼 이벤트
 $regameBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  window.location.reload();
+  data = utils.gameStartSetting(data, selected_lang);
+  utils.changeScoreTag();
+  $startBtn.disabled = false;
+  $answerBtn.disabled = true;
+  $warnToGptBtn.disabled = true;
+
+  const gNodes = document.querySelector("#boardarea_gpt");
+  const uNodes = document.querySelector("#boardarea_user");
+
+  while (gNodes.firstChild) {
+    gNodes.firstChild.remove();
+  }
+  while (uNodes.firstChild) {
+    uNodes.firstChild.remove();
+  }
+  // or
+  //gNodes.innerHTML = "";
+  //uNodes.innerHTML = "";
 });

@@ -1,19 +1,18 @@
 body {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   margin: 0;
 }
 
 /* navbar 부분 */
 #navbar {
   display: flex;
-  /* flex-direction: row; */
   justify-content: space-between;
   align-content: center;
-  /* width: 70%; */
   border-bottom: solid 2px #ddd;
   text-decoration-line: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #logolink {
@@ -22,12 +21,13 @@ body {
   align-items: center;
   text-decoration-line: none;
   vertical-align: center;
+  margin-left: 15vw;
 }
 
 #imglogo {
   width: 50px;
   display: inline-block;
-  margin: 10px;
+  margin: auto;
 }
 
 .titlelogo {
@@ -41,6 +41,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-right: 15vw;
 }
 
 #langselect {
@@ -59,8 +60,8 @@ body {
   background-color: #ddd;
   height: 100px;
   width: 100%;
-  padding-top: 10px;
-  margin-top: 10px;
+  padding: 10px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
   border-top: solid 2px #eee;
 }
 
@@ -86,7 +87,6 @@ body {
   justify-content: space-between;
   padding: 5px;
   border-top: solid 2px #ddd;
-  /* margin: 10px; */
 }
 
 #buttonArea {
@@ -107,48 +107,7 @@ body {
   margin: 0 5px 0 5px;
   height: 93%;
   border: 2px solid #cc8c3f;
-}
-
-#startBtn,
-#warnBtn {
-  margin: 0px;
-  border: 1px solid #f0f0f0;
-  border-radius: 3px;
-}
-
-#answerBtn {
-  margin: 0px;
-  border: 1px solid #f0f0f0;
-  border-radius: 3px;
-}
-
-#answerSection {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0px;
-}
-
-/* loading 화면*/
-#mask {
-  position: absolute;
-  z-index: 9000;
-  background-color: #333;
-  display: none;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.3;
-}
-
-#loadingImg > img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 9000;
-  opacity: 0.7;
-  margin: auto;
-  transform: translate(-50%, -50%);
+  padding-left: 10px;
+  min-width: 150px;
+  font-size: medium;
 }

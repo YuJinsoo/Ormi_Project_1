@@ -18,7 +18,8 @@ export function answerSectionGenerator() {
   tmp = document.createElement("div");
   tmp.classList.add("scoreboard");
   let tmp2 = document.createElement("div");
-  tmp2.innerText = "경고횟수판";
+  tmp2.innerText = "GPT가 받은 경고";
+  tmp2.classList.add("scoretable");
   tmp.append(tmp2);
   tmp2 = document.createElement("div");
   tmp2.id = "score";
@@ -37,6 +38,10 @@ export function answerSectionGenerator() {
 
   tmp = document.createElement("div");
   tmp.id = "boardarea_gpt";
+  board.append(tmp);
+
+  tmp = document.createElement("div");
+  tmp.id = "boardarea_blank";
   board.append(tmp);
 
   tmp = document.createElement("div");
