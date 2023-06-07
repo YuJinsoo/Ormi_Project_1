@@ -9,7 +9,7 @@ export function headerGenerator() {
   logo.id = "logolink";
 
   let logoImg = document.createElement("img");
-  logoImg.src = "./img/versus.png";
+  logoImg.src = "./asset/versus.png";
   logoImg.id = "imglogo";
   logo.append(logoImg);
 
@@ -47,7 +47,7 @@ export function headerGenerator() {
 /* 
 <header id="navbar">
     <a href="./index.html" id="logolink">
-        <img id="imglogo" src="./img/versus.png" />
+        <img id="imglogo" src="./asset/versus.png" />
         <div class="titlelogo">VERSUS GPT</div>
     </a>
     <div id="language">

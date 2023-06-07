@@ -25,7 +25,7 @@ export function inputSectionGenerator() {
   reBtn.classList.add("btndafault", "btnstyle");
 
   let reImg = document.createElement("img");
-  reImg.src = "./img/refresh.png";
+  reImg.src = "./asset/refresh.png";
   reBtn.append(reImg);
   buttons.append(reBtn);
 
