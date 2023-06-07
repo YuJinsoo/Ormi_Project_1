@@ -21,3 +21,13 @@
   background-color: #ddd;
   color: #aaa;
 }
+
+@media screen and (max-width: 600px) {
+  .btndafault {
+    padding: 5px 10px;
+  }
+
+  .btnstyle {
+    font-size: xx-small;
+  }
+}

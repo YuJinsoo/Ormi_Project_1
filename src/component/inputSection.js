@@ -26,8 +26,6 @@ export function inputSectionGenerator() {
 
   let reImg = document.createElement("img");
   reImg.src = "./img/refresh.png";
-  reImg.style.width = "30px";
-  reImg.style.objectFit = "contain";
   reBtn.append(reImg);
   buttons.append(reBtn);
 

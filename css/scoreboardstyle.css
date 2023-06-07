@@ -1,5 +1,6 @@
 /* 점수판, 단어판 부분 */
 
+/* 점수판 부분*/
 #answerSection {
   display: flex;
   flex-direction: column;
@@ -43,6 +44,22 @@
   margin: 10px;
 }
 
+@media screen and (max-width: 600px) {
+  #answerSection {
+    margin: 3px, auto;
+  }
+  #index {
+    font-size: x-small;
+    width: 90%;
+    min-width: 200px;
+  }
+
+  .scoreboard {
+    width: 80px;
+  }
+}
+
+/* 단어 표시 부분 */
 #wordboard {
   display: flex;
   flex-direction: row;
@@ -79,4 +96,21 @@
   width: 200px;
   text-align: center;
   margin: 5px 10px;
+}
+
+@media screen and (max-width: 600px) {
+  #wordboard {
+    font-size: x-small;
+    width: 90%;
+    min-width: 200px;
+    height: 200px;
+  }
+  #boardarea_blank {
+    width: 80px;
+  }
+
+  .answer {
+    font-size: x-small;
+    width: 60px;
+  }
 }
