@@ -10,7 +10,7 @@ function openLoading() {
   loadingImg.id = "loadingImg";
 
   const imgNode = document.createElement("img");
-  imgNode.src = "../img/Hourglass.gif";
+  imgNode.src = "../asset/Hourglass.gif";
   loadingImg.append(imgNode);
 
   //화면에 레이어 추가
