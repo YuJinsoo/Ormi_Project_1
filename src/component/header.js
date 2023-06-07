@@ -4,38 +4,39 @@ export function headerGenerator() {
   let resultNode = document.createElement("header");
   resultNode.id = "navbar";
 
-  let tmp;
   let logo = document.createElement("a");
   logo.href = "./index.html";
   logo.id = "logolink";
 
-  tmp = document.createElement("img");
-  tmp.src = "./img/versus.png";
-  tmp.id = "imglogo";
-  logo.append(tmp);
+  let logoImg = document.createElement("img");
+  logoImg.src = "./img/versus.png";
+  logoImg.id = "imglogo";
+  logo.append(logoImg);
 
-  tmp = document.createElement("div");
-  tmp.classList.add("titlelogo");
-  tmp.innerText = "VERSUS GPT";
-  logo.append(tmp);
+  let logoTitle = document.createElement("div");
+  logoTitle.classList.add("titlelogo");
+  logoTitle.innerText = "VERSUS GPT";
+  logo.append(logoTitle);
 
   let language = document.createElement("div");
   language.id = "language";
 
-  tmp = document.createElement("p");
-  tmp.classList.add("titlelogo");
-  tmp.textContent = "Language:";
-  language.append(tmp);
+  let langText = document.createElement("p");
+  langText.classList.add("titlelogo");
+  langText.textContent = "Language:";
+  language.append(langText);
 
-  tmp = document.createElement("select");
-  tmp.id = "langselect";
-  let tmp2 = document.createElement("option");
-  tmp2.innerText = "한국어(Korean)";
-  tmp.append(tmp2);
-  tmp2 = document.createElement("option");
-  tmp2.innerText = "영어(English)";
-  tmp.append(tmp2);
-  language.append(tmp);
+  let langSelbox = document.createElement("select");
+  langSelbox.id = "langselect";
+
+  let optKo = document.createElement("option");
+  optKo.innerText = "한국어(Korean)";
+  langSelbox.append(optKo);
+
+  let optEn = document.createElement("option");
+  optEn.innerText = "영어(English)";
+  langSelbox.append(optEn);
+  language.append(langSelbox);
 
   resultNode.append(logo);
   resultNode.append(language);

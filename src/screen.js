@@ -47,7 +47,7 @@ $right.addEventListener("click", function () {
 });
 
 function btncolor(idx) {
-  let btnall = document.querySelectorAll(".btnDot");
+  const btnall = document.querySelectorAll(".btnDot");
   idx += 1;
   for (b of btnall) {
     if (b.id.includes("" + idx)) {

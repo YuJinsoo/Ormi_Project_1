@@ -5,20 +5,21 @@ export function footerGenerator() {
   let resultNode = document.createElement("footer");
   resultNode.id = "footer";
 
-  let tmp;
-  tmp = document.createElement("div");
-  tmp.classList.add("footercontent");
-  tmp.innerText = "끝말잇기 게임을 즐겨주셔서 감사합니다.";
-  resultNode.append(tmp);
-  tmp = document.createElement("div");
-  tmp.classList.add("footercontent");
-  tmp.innerText = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-  resultNode.append(tmp);
-  tmp = document.createElement("div");
-  tmp.classList.add("footercontent");
-  tmp.innerText =
+  let content = document.createElement("div");
+  content.classList.add("footercontent");
+  content.innerText = "끝말잇기 게임을 즐겨주셔서 감사합니다.";
+  resultNode.append(content);
+
+  content = document.createElement("div");
+  content.classList.add("footercontent");
+  content.innerText = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+  resultNode.append(content);
+
+  content = document.createElement("div");
+  content.classList.add("footercontent");
+  content.innerText =
     "github repository : https://github.com/YuJinsoo/Ormi_Project_1";
-  resultNode.append(tmp);
+  resultNode.append(content);
 
   return resultNode;
 }

@@ -25,7 +25,7 @@ function chatGptAPI(data) {
   })
     .then((res) => res.json())
     .then((res) => {
-      let api_content = res.choices[0].message.content;
+      const api_content = res.choices[0].message.content;
 
       if (api_content.indexOf("{") === -1 || api_content.indexOf("}") === -1) {
         throw new Error(
@@ -33,7 +33,7 @@ function chatGptAPI(data) {
         );
       }
 
-      let result = parseJsonAnswer(api_content);
+      const result = parseJsonAnswer(api_content);
       if (result === "") {
         return;
       }
@@ -47,11 +47,13 @@ function chatGptAPI(data) {
       printGptMessage(api_content);
     })
     .catch((e) => {
+      // sweetalert2
       Swal.fire({
         icon: "warning",
         title: "GPT 메시지",
         text: `GPT의 메시지를 확인해주세요! (새로시작 해야할 수 있습니다) ${e}`,
       });
+      printGptMessage(api_content);
     })
     .finally(() => {
       closeLoading();
@@ -76,15 +78,14 @@ function parseJsonAnswer(text) {
 }
 
 function wrapToJsonForm(user_input) {
-  let text = `{"answer":"${user_input}"}`;
+  const text = `{"answer":"${user_input}"}`;
   return text;
 }
 
 function answerTagAdder(text, parentNode) {
-  let obj = document.createElement("p");
+  const obj = document.createElement("p");
   obj.classList.add("answer");
   obj.innerHTML = `${text.slice(0, -1)}<strong>${text.slice(-1)}</strong>`;
-  //obj.innerText = text;
 
   parentNode.prepend(obj);
   return;
@@ -133,6 +134,7 @@ function checkWarnCount(side) {
   changeScoreTag();
 
   if (gpt_count >= count_max) {
+    // sweetalert2
     Swal.fire({
       icon: "success",
       title: "승리!",
@@ -141,6 +143,7 @@ function checkWarnCount(side) {
   }
 
   if (user_count >= count_max) {
+    // sweetalert2
     Swal.fire({
       icon: "warning",
       title: "패배!",
@@ -153,7 +156,7 @@ function checkWarnCount(side) {
 
 // 경고점수 태그
 function changeScoreTag() {
-  let socre = document.querySelector("#score");
+  const socre = document.querySelector("#score");
   socre.innerText = `${gpt_count} : ${user_count}`;
   return;
 }
@@ -171,6 +174,7 @@ function checkDuplicated(word) {
   check2 = String(answers.user.slice(0, -1)).indexOf(word);
 
   if (check1 !== -1 || check2 !== -1) {
+    // sweetalert2
     Swal.fire({
       icon: "error",
       title: "단어 입력",
@@ -184,14 +188,14 @@ function checkDuplicated(word) {
 
 // gpt와 의 대화 data 추가하는 함수
 function appendData(data, side, dialogdata) {
-  let obj = { role: `${side}`, content: `${dialogdata}` };
+  const obj = { role: `${side}`, content: `${dialogdata}` };
   data.push(obj);
   return data;
 }
 
 //api 메시지 출력
 function printGptMessage(text) {
-  let mes = document.querySelector("#message");
+  const mes = document.querySelector("#message");
   mes.innerText = text;
   return;
 }

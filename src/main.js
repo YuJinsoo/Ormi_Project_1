@@ -56,6 +56,7 @@ $startBtn.addEventListener("click", (e) => {
 $answerBtn.addEventListener("click", (e) => {
   e.preventDefault(); // 화면 멈춤. 아무런 액션이 일어나지 않음
   if ($input.value === "") {
+    // sweetalert2
     Swal.fire({
       icon: "error",
       title: "단어 입력",
@@ -95,6 +96,7 @@ $regameBtn.addEventListener("click", (e) => {
   $startBtn.disabled = false;
   $answerBtn.disabled = true;
   $warnToGptBtn.disabled = true;
+  document.querySelector("#message").textContent = "";
 
   const gNodes = document.querySelector("#boardarea_gpt");
   const uNodes = document.querySelector("#boardarea_user");

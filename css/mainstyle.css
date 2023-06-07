@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+h1 {
+  display: none;
+}
+
 /* navbar 부분 */
 #navbar {
   display: flex;

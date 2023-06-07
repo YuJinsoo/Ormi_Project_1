@@ -4,57 +4,57 @@
 export function answerSectionGenerator() {
   let resultNode = document.createElement("section");
   resultNode.id = "answerSection";
-  let tmp;
 
   // id index 생성
   let index = document.createElement("div");
   index.id = "index";
 
-  tmp = document.createElement("div");
-  tmp.classList.add("gptSide");
-  tmp.innerText = "GPT ANSWER";
-  index.append(tmp);
+  let gptSide = document.createElement("div");
+  gptSide.classList.add("gptSide");
+  gptSide.innerText = "GPT ANSWER";
+  index.append(gptSide);
 
-  tmp = document.createElement("div");
-  tmp.classList.add("scoreboard");
-  let tmp2 = document.createElement("div");
-  tmp2.innerText = "GPT가 받은 경고";
-  tmp2.classList.add("scoretable");
-  tmp.append(tmp2);
-  tmp2 = document.createElement("div");
-  tmp2.id = "score";
-  tmp2.innerText = "0:0";
-  tmp.append(tmp2);
-  index.append(tmp);
+  let scoreBoard = document.createElement("div");
+  scoreBoard.classList.add("scoreboard");
+  let sIndex = document.createElement("div");
+  sIndex.innerText = "GPT가 받은 경고";
+  sIndex.classList.add("scoretable");
+  scoreBoard.append(sIndex);
 
-  tmp = document.createElement("div");
-  tmp.classList.add("userSide");
-  tmp.innerText = "USER ANSWER";
-  index.append(tmp);
+  let score = document.createElement("div");
+  score.id = "score";
+  score.innerText = "0:0";
+  scoreBoard.append(score);
+  index.append(scoreBoard);
+
+  let userSide = document.createElement("div");
+  userSide.classList.add("userSide");
+  userSide.innerText = "USER ANSWER";
+  index.append(userSide);
 
   // id wordboard 생성
   let board = document.createElement("div");
   board.id = "wordboard";
 
-  tmp = document.createElement("div");
-  tmp.id = "boardarea_gpt";
-  board.append(tmp);
+  let boardGpt = document.createElement("div");
+  boardGpt.id = "boardarea_gpt";
+  board.append(boardGpt);
 
-  tmp = document.createElement("div");
-  tmp.id = "boardarea_blank";
-  board.append(tmp);
+  let boardBlank = document.createElement("div");
+  boardBlank.id = "boardarea_blank";
+  board.append(boardBlank);
 
-  tmp = document.createElement("div");
-  tmp.id = "boardarea_user";
-  board.append(tmp);
+  let boardUser = document.createElement("div");
+  boardUser.id = "boardarea_user";
+  board.append(boardUser);
 
   resultNode.append(index);
   resultNode.append(board);
 
   //
-  tmp = document.createElement("div");
-  tmp.id = "message";
-  resultNode.append(tmp);
+  let msg = document.createElement("div");
+  msg.id = "message";
+  resultNode.append(msg);
 
   return resultNode;
 }

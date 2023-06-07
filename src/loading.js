@@ -3,20 +3,22 @@ function openLoading() {
   let maskHeight = $(document).height();
   let maskWidth = document.maskWidth;
 
-  let mask = document.createElement("div");
+  const mask = document.createElement("div");
   mask.id = "mask";
 
-  let loadingImg = document.createElement("div");
+  const loadingImg = document.createElement("div");
   loadingImg.id = "loadingImg";
 
-  let tmp = document.createElement("img");
-  tmp.src = "../img/Hourglass.gif";
-  loadingImg.append(tmp);
+  const imgNode = document.createElement("img");
+  imgNode.src = "../img/Hourglass.gif";
+  loadingImg.append(imgNode);
 
   //화면에 레이어 추가
+  // sweetalert2, jQuery
   $("body").append(mask).append(loadingImg);
 
   //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
+  // sweetalert2, jQuery
   $("#mask").css({
     width: maskWidth,
     height: maskHeight,
@@ -24,19 +26,22 @@ function openLoading() {
   });
 
   let h = maskHeight / 2;
-  //console.log(h);
+  // sweetalert2, jQuery
   $("#loadingImg").css({
     top: h,
   });
 
   //마스크 표시
+  // sweetalert2, jQuery
   $("#mask").show();
 
   //로딩중 이미지 표시
+  // sweetalert2, jQuery
   $("#loadingImg").show();
 }
 
 function closeLoading() {
+  // sweetalert2, jQuery
   $("#mask, #loadingImg").hide();
   $("#mask, #loadingImg").remove();
 }
