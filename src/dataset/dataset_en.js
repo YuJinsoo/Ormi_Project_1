@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {Array} data 영어 학습 데이터를 받아올 Array
+ * @returns {Array} 설정된 영어 학습 데이터
+ */
 export function resetDataEn(data) {
   data = [
     { role: "system", content: "assistant is a good gamer." },

@@ -5,8 +5,6 @@ import { footerGenerator } from "./component/footer.js";
 
 import * as utils from "./utils.js";
 import { openLoading, closeLoading } from "./loading.js";
-import { resetDataKo } from "./dataset/dataset_ko.js";
-import { resetDataEn } from "./dataset/dataset_en.js";
 
 // html 생성
 const $body = document.querySelector("body");
@@ -113,7 +111,7 @@ $regameBtn.addEventListener("click", (e) => {
   //uNodes.innerHTML = "";
 });
 
-// 접기버튼 클릭 이벤트 : 90도 회전 토글 기능
+// 접기버튼 클릭 이벤트 : 180도 회전 토글 기능
 $foldBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const bd = document.querySelector("#wordboard");

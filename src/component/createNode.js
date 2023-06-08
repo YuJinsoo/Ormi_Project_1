@@ -2,9 +2,9 @@
 /**
  *
  * @param {String} tag
- * @param {String, default null} id
- * @param {String} cls
- * @returns {DOMobject}
+ * @param {String} id default null
+ * @param {String} cls defualt null. 여러 클래스를 공백으로 구분하여 추가할 수 있습니다.
+ * @returns {DOM object}
  */
 export function createNode(tag, id = null, cls = null) {
   const result = document.createElement(tag);

@@ -1,4 +1,8 @@
 //로딩창...
+
+/**
+ * loading 창을 불러오는 함수
+ */
 function openLoading() {
   let maskHeight = $(document).height();
   let maskWidth = document.maskWidth;
@@ -40,6 +44,9 @@ function openLoading() {
   $("#loadingImg").show();
 }
 
+/**
+ * loading창을 닫아주는 함수
+ */
 function closeLoading() {
   // sweetalert2, jQuery
   $("#mask, #loadingImg").hide();

@@ -46,6 +46,10 @@ $right.addEventListener("click", function () {
   btncolor(pos);
 });
 
+/**
+ *
+ * @param {Number} idx 현재 스크린의 위치. integer
+ */
 function btncolor(idx) {
   const btnall = document.querySelectorAll(".btnDot");
   idx += 1;

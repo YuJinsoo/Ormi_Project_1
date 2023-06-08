@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {Array} data 한국어 학습 데이터를 받아올 Array
+ * @returns {Array} 설정된 한국어 학습 데이터
+ */
 export function resetDataKo(data) {
   data = [
     {

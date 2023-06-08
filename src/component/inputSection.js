@@ -1,4 +1,5 @@
 import { createNode } from "./createNode.js";
+
 /**
  * header를 생성해서 Node를 반환합니다.
  * 반환된 Node를 main.js에서 body에 append해주세요.

@@ -13,7 +13,10 @@ const answers = {
   user: [],
 };
 
-// 입력한 텍스트 전달 및 응답 수신
+/**
+ * 입력한 학습 대화 전달 및 응답 수신
+ * @param {Array} data gpt의 응답을 받을 학습 데이터 Array
+ */
 function chatGptAPI(data) {
   fetch(url, {
     method: "POST",
@@ -60,7 +63,11 @@ function chatGptAPI(data) {
     });
 }
 
-// gptAPI로 온 답변을 JSON으로 파싱하여 데이터로 저장
+/**
+ * gptAPI로 온 답변을 JSON 형식으로 파싱하여 응답 저장 객체에 저장
+ * @param {String} text
+ * @returns {String} 끝말잇기 단어 출력
+ */
 function parseJsonAnswer(text) {
   // \" 문자가 들어가는 경우가 있어서 제외.
   if (text.indexOf("\\") !== -1) {
@@ -77,21 +84,36 @@ function parseJsonAnswer(text) {
   return answers.gpt[answers.gpt.length - 1];
 }
 
+/**
+ * 사용자가 입력한 단어를 JSON의 object 형식으로 변환하여 반환
+ * @param {String} user_input 사용자가 입력한 단어
+ * @returns {String} JSON의 object 형식으로 반환
+ */
 function wrapToJsonForm(user_input) {
   const text = `{"answer":"${user_input}"}`;
   return text;
 }
 
+/**
+ * parentNode로 지정된 Node에 text를 innerText로 가지는 p 태그 노드를 추가
+ * @param {String} text
+ * @param {DOM Node} parentNode
+ * @returns
+ */
 function answerTagAdder(text, parentNode) {
   const obj = document.createElement("p");
   obj.classList.add("answer");
   obj.innerHTML = `${text.slice(0, -1)}<strong>${text.slice(-1)}</strong>`;
 
   parentNode.prepend(obj);
-  return;
 }
 
-// 제시한 단어가 적절한 단어인지 확인
+/**
+ * 제시한 단어가 적절한 단어인지 확인학 규칙에 어긋날 경우 점수 반영
+ * @param {String} word 입력한 단어
+ * @param {String} side "user" 혹은 "assistant" 만 입력해야 합니다.
+ * @returns
+ */
 function checkCorrectWord(word, side) {
   let latest_word;
   let result;
@@ -121,10 +143,14 @@ function checkCorrectWord(word, side) {
   if (checkDuplicated(word)) {
     checkWarnCount(side);
   }
-  return;
 }
 
 // checkCorrectWord()의 result가 false 일때 경고 점수 카운트, 승리알림
+
+/**
+ * 경고 횟수를 카운트하고 초과했을 때 누구가 승리했는지 알림
+ * @param {String} side "user" 혹은 "assistant" 만 입력해야 합니다.
+ */
 function checkWarnCount(side) {
   if (side === "user") {
     user_count++;
@@ -151,17 +177,21 @@ function checkWarnCount(side) {
     });
   }
   console.log(`gpt : ${gpt_count}, user: ${user_count}`);
-  return;
 }
 
-// 경고점수 태그
+/**
+ * 경고점수 태그에 점수를 수정
+ */
 function changeScoreTag() {
   const socre = document.querySelector("#score");
   socre.innerText = `${gpt_count} : ${user_count}`;
-  return;
 }
 
-// 단어가 중복되었는지 확인
+/**
+ * 단어가 중복되었는지 확인
+ * @param {String} word 가장 최근에 입력된 단어
+ * @returns {Boolean}
+ */
 function checkDuplicated(word) {
   let result = false;
   let check1 = 0;
@@ -186,21 +216,34 @@ function checkDuplicated(word) {
   return result;
 }
 
-// gpt와 의 대화 data 추가하는 함수
+/**
+ * gpt와 의 학습 대화 data 추가하는 함수
+ * @param {Array} data 학습 데이터
+ * @param {String} side "user" 혹은 "assistant"
+ * @param {String} dialogdata "conent"에 들어갈 대화 내용
+ * @returns  {Array} 갱신된 data 학습 데이터
+ */
 function appendData(data, side, dialogdata) {
   const obj = { role: `${side}`, content: `${dialogdata}` };
   data.push(obj);
   return data;
 }
 
-//api 메시지 출력
+/**
+ * GPT의 api 메시지 출력
+ * @param {String} text
+ */
 function printGptMessage(text) {
   const mes = document.querySelector("#message");
   mes.innerText = text;
-  return;
 }
 
-// 게임 시작시 필요한 데이터 세팅
+/**
+ * 게임 시작시 필요한 데이터 세팅 (학습데이터, 경고횟수 초기화, 단어 저장 객체 초기화)
+ * @param {*} data
+ * @param {*} selected_lang
+ * @returns
+ */
 function gameStartSetting(data, selected_lang) {
   answers.gpt = [];
   answers.user = [];
