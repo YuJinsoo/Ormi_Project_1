@@ -118,7 +118,7 @@ $foldBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const bd = document.querySelector("#wordboard");
   if (e.currentTarget.style.cssText === "--click_toggle: 90deg;") {
-    e.currentTarget.style.cssText = "";
+    e.currentTarget.style.cssText = "--click_toggle: -90deg;";
     bd.style.height = "35px";
     bd.style.overflow = "hidden";
   } else {

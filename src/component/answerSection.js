@@ -46,6 +46,7 @@ export function answerSectionGenerator() {
   let foldbtn = document.createElement("button");
   foldbtn.innerText = "》";
   foldbtn.id = "foldBtn";
+  foldbtn.style.cssText = "--click_toggle: -90deg;";
   boardBlank.append(foldbtn);
   board.append(boardBlank);
 
