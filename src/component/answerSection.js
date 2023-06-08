@@ -1,65 +1,54 @@
-// header를 생성해서 Node를 반환합니다.
-// 반환된 Node를 main.js에서 body에 append해주세요.
+import { createNode } from "./createNode.js";
 
+/**
+ * header를 생성해서 Node를 반환합니다.
+ * 반환된 Node를 main.js에서 body에 append해주세요.
+ */
 export function answerSectionGenerator() {
-  let resultNode = document.createElement("section");
-  resultNode.id = "answerSection";
+  let resultNode = createNode("section", "answerSection");
 
   // id index 생성
-  let index = document.createElement("div");
-  index.id = "index";
+  let index = createNode("div", "index");
 
-  let gptSide = document.createElement("div");
-  gptSide.classList.add("gptSide");
+  let gptSide = createNode("div", null, "gptSide");
   gptSide.innerText = "GPT ANSWER";
   index.append(gptSide);
 
-  let scoreBoard = document.createElement("div");
-  scoreBoard.classList.add("scoreboard");
-  let sIndex = document.createElement("div");
+  let scoreBoard = createNode("div", null, "scoreboard");
+  let sIndex = createNode("div", null, "scoretable");
   sIndex.innerText = "GPT가 받은 경고";
-  sIndex.classList.add("scoretable");
   scoreBoard.append(sIndex);
 
-  let score = document.createElement("div");
-  score.id = "score";
-  score.innerText = "0:0";
+  let score = createNode("div", "score");
+  score.innerText = "0 : 0";
   scoreBoard.append(score);
   index.append(scoreBoard);
 
-  let userSide = document.createElement("div");
-  userSide.classList.add("userSide");
+  let userSide = createNode("div", null, "userSide");
   userSide.innerText = "USER ANSWER";
   index.append(userSide);
 
   // id wordboard 생성
-  let board = document.createElement("div");
-  board.id = "wordboard";
+  let board = createNode("div", "wordboard");
 
-  let boardGpt = document.createElement("div");
-  boardGpt.id = "boardarea_gpt";
+  let boardGpt = createNode("div", "boardarea_gpt");
   board.append(boardGpt);
 
-  let boardBlank = document.createElement("div");
-  boardBlank.id = "boardarea_blank";
-
-  let foldbtn = document.createElement("button");
+  let boardBlank = createNode("div", "boardarea_blank");
+  let foldbtn = createNode("button", "foldBtn");
   foldbtn.innerText = "》";
-  foldbtn.id = "foldBtn";
   foldbtn.style.cssText = "--click_toggle: -90deg;";
   boardBlank.append(foldbtn);
   board.append(boardBlank);
 
-  let boardUser = document.createElement("div");
-  boardUser.id = "boardarea_user";
+  let boardUser = createNode("div", "boardarea_user");
   board.append(boardUser);
 
   resultNode.append(index);
   resultNode.append(board);
 
   //
-  let msg = document.createElement("div");
-  msg.id = "message";
+  let msg = createNode("div", "message");
   resultNode.append(msg);
 
   return resultNode;

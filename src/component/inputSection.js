@@ -1,58 +1,49 @@
-// infoSection을 생성해서 Node를 반환합니다.
-// 반환된 Node를 main.js에서 body에 append해주세요.
+import { createNode } from "./createNode.js";
+/**
+ * header를 생성해서 Node를 반환합니다.
+ * 반환된 Node를 main.js에서 body에 append해주세요.
+ */
 export function inputSectionGenerator() {
-  let resultNode = document.createElement("section");
-  resultNode.id = "infoSection";
+  let resultNode = createNode("section", "infoSection");
 
   // id userInput 생성
-  let inputs = document.createElement("div");
-  inputs.id = "userInput";
+  let inputs = createNode("div", "userInput");
 
   // 시작, 새로고침, 경고 버튼 area
-  let buttons = document.createElement("div");
-  buttons.id = "buttonArea";
+  let buttons = createNode("div", "buttonArea");
 
   // 시작버튼
-  let strBtn = document.createElement("button");
-  strBtn.id = "startBtn";
-  strBtn.classList.add("btndafault", "btnstyle");
+  let strBtn = createNode("button", "startBtn", "btndafault btnstyle");
   strBtn.textContent = "시작";
   buttons.append(strBtn);
 
   // 새로고침 버튼
-  let reBtn = document.createElement("button");
-  reBtn.id = "regameBtn";
-  reBtn.classList.add("btndafault", "btnstyle");
-
-  let reImg = document.createElement("img");
+  let reBtn = createNode("button", "regameBtn", "btndafault btnstyle");
+  let reImg = createNode("img");
   reImg.src = "./asset/refresh.png";
   reBtn.append(reImg);
   buttons.append(reBtn);
 
   //경고버튼
-  let warBtn = document.createElement("button");
-  warBtn.id = "warnBtn";
-  warBtn.classList.add("btndafault", "btnstyle");
+  let warBtn = createNode("button", "warnBtn", "btndafault btnstyle");
   warBtn.disabled = "true";
   warBtn.innerText = "gpt에게경고!";
   buttons.append(warBtn);
   inputs.append(buttons);
 
   // form 생성. form 안쓰면 엔터키 처리를 keydown 이벤트로 처리해야함
-  let formbox = document.createElement("form");
+  let formbox = createNode("form");
   formbox.type = "text";
   formbox.autofocus = true;
 
   // input 생성
-  let inText = document.createElement("input");
+  let inText = createNode("input");
   inText.type = "text";
   inText.placeholder = "단어를 입력해주세요";
   formbox.append(inText);
 
   //전송버튼
-  let sendBtn = document.createElement("button");
-  sendBtn.id = "answerBtn";
-  sendBtn.classList.add("btndafault", "btnstyle");
+  let sendBtn = createNode("button", "answerBtn", "btndafault btnstyle");
   sendBtn.disabled = "true";
   sendBtn.innerText = "답장 send";
   formbox.append(sendBtn);
