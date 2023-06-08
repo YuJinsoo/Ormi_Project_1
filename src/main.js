@@ -27,6 +27,7 @@ const $answerBtn = document.querySelector("#answerBtn");
 const $regameBtn = document.querySelector("#regameBtn");
 const $warnToGptBtn = document.querySelector("#warnBtn");
 const $boardarea_user = document.querySelector("#boardarea_user");
+const $foldBtn = document.querySelector("#foldBtn");
 
 let selected_lang = "한국어(Korean)";
 //학습 데이터로 data 변수 세팅
@@ -110,4 +111,19 @@ $regameBtn.addEventListener("click", (e) => {
   // or
   //gNodes.innerHTML = "";
   //uNodes.innerHTML = "";
+});
+
+// 접기버튼 클릭 이벤트 : 90도 회전 토글 기능
+$foldBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const bd = document.querySelector("#wordboard");
+  if (e.currentTarget.style.cssText === "--click_toggle: 90deg;") {
+    e.currentTarget.style.cssText = "";
+    bd.style.height = "35px";
+    bd.style.overflow = "hidden";
+  } else {
+    e.currentTarget.style.cssText = "--click_toggle: 90deg;";
+    bd.style.height = "300px";
+    bd.style.overflow = "auto";
+  }
 });

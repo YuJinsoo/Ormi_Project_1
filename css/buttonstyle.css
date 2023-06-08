@@ -6,10 +6,15 @@
   padding: 10px 15px;
   border-radius: 3px;
   font-family: "paybooc-Light", sans-serif;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
   text-decoration: none;
   font-weight: 600;
   margin: 0px 5px;
+}
+
+.btndafault:active {
+  transition-duration: 0.2s;
+  box-shadow: none;
 }
 
 .btnstyle {

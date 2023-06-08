@@ -42,6 +42,11 @@ export function answerSectionGenerator() {
 
   let boardBlank = document.createElement("div");
   boardBlank.id = "boardarea_blank";
+
+  let foldbtn = document.createElement("button");
+  foldbtn.innerText = "》";
+  foldbtn.id = "foldBtn";
+  boardBlank.append(foldbtn);
   board.append(boardBlank);
 
   let boardUser = document.createElement("div");
