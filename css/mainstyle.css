@@ -7,84 +7,14 @@ body {
   padding-top: 75px;
 }
 
+@media screen and (max-width: 600px) {
+  body {
+    padding-top: 55px;
+  }
+}
+
 h1 {
   display: none;
-}
-
-/* navbar 부분 */
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: white;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  border-bottom: solid 2px #ddd;
-  text-decoration-line: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-#logolink {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  text-decoration-line: none;
-  vertical-align: center;
-  margin-left: 15vw;
-}
-
-#imglogo {
-  width: 50px;
-  display: inline-block;
-  margin: auto;
-}
-
-.titlelogo {
-  color: #de9d49;
-  font-size: larger;
-  font-weight: 700;
-  margin: 5px 10px;
-}
-
-#language {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-right: 15vw;
-}
-
-#langselect {
-  margin: 5px 10px;
-  background-color: #fdf4e8;
-  border: solid 2px #777;
-  border-radius: 3px;
-  padding: 5px 3px 3px 3px;
-}
-
-@media screen and (max-width: 600px) {
-  #logolink {
-    margin-left: 10px;
-  }
-
-  #language {
-    padding-right: 10px;
-  }
-
-  #imglogo {
-    width: 30px;
-  }
-
-  .titlelogo {
-    font-size: x-small;
-  }
-
-  #langselect {
-    font-size: xx-small;
-  }
 }
 
 /* footer 요소 부분 */

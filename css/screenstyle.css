@@ -43,6 +43,7 @@
 
   .inner img {
     width: 90%;
+    height: 200px;
     opacity: 0.4;
   }
 }

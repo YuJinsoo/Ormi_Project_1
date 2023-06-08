@@ -36,19 +36,62 @@
 
 ## 프로젝트 구조
 
+```
+│  index.html
+│  README.md
+│
+├─.vscode
+│      extensions.json
+│
+├─asset
+│      1.jpg
+│      2.jpg
+│      3.jpg
+│      Circles-menu-3.gif
+│      Hourglass.gif
+│      refresh.png
+│      versus.png
+│
+├─chromedriver_win32
+│      chromedriver.exe
+│      LICENSE.chromedriver
+│
+├─css
+│      buttonstyle.css
+│      loadingstyle.css
+│      mainstyle.css
+│      scoreboardstyle.css
+│      screenstyle.css
+│
+└─src
+    │  loading.js
+    │  main.js
+    │  screen.js
+    │  utils.js
+    │
+    ├─component
+    │      answerSection.js
+    │      createNode.js
+    │      footer.js
+    │      header.js
+    │      inputSection.js
+    │
+    └─dataset
+            dataset_en.js
+            dataset_ko.js
+```
+
 ## 개발 일정 (WBS)
+
+- 2023-05-25 ~ 2023-06-14
 
 ## 개발 이슈
 
-### ~2023.06.01
+1. 학습을 많이 시켜도 항상 원하는 답을 하지는 않았습니다. 일반적으로 진행 가능한 수준으로 학습시킨 뒤, 예외사항을 처리하거나 추가 기능을 개발하는 것이 효과적이라고 판단했습니다. (~2023.06.01)
 
-- 학습을 많이 시켜도 항상 원하는 답을 하지는 않았습니다. 일반적으로 진행 가능한 수준으로 학습시킨 뒤, 예외사항을 처리하거나 추가 기능을 개발하는 것이 효과적이라고 판단했습니다.
+2. gpt 스스로 판단해서 JSON오브젝트를 보내지 않는 경우가 있습니다. 이런 case를 처리하는 기능 개발이 추가로 필요합니다. 이런 경우 보여주는 화면에 빈칸 혹은 '-'표시를 하고 게임을 계속 진행할 지 새로운 게임을 시작하게 하는 것이 좋을지 고민중입니다. (~2023.06.02)
 
-### ~2023.06.02
-
-1. gpt 스스로 판단해서 JSON오브젝트를 보내지 않는 경우가 있습니다. 이런 case를 처리하는 기능 개발이 추가로 필요합니다. 이런 경우 보여주는 화면에 빈칸 혹은 '-'표시를 하고 게임을 계속 진행할 지 새로운 게임을 시작하게 하는 것이 좋을지 고민중입니다.
-
-2. gpt가 말하는 단어중 없는 단어가 있습니다. 일단은 유저가 gpt에게 경고 count를 올릴 수 있는 버튼으로 해결하였습니다. 최종적으로 크롤러를 개발해서 사전에서 유효성을 검색하는 기능을 추가하고 싶은데 다른 기능을 모두 완료한 후에 붙이는 식으로 해야 된다고 판단했습니다.
+3. gpt가 말하는 단어중 없는 단어가 있습니다. 일단은 유저가 gpt에게 경고 count를 올릴 수 있는 버튼으로 해결하였습니다. 최종적으로 크롤러를 개발해서 사전에서 유효성을 검색하는 기능을 추가하고 싶은데 다른 기능을 모두 완료한 후에 붙이는 식으로 해야 된다고 판단했습니다. (~2023.06.02)
 
 ## 추가 개발 계획
 
@@ -59,7 +102,7 @@
 - 사전 크롤러 (selenium 사용해보려고 함)
 - ~~alert 창 꾸미기~~ 개발완료 > sweetAlert2
 - ~~모바일 화면에서 깨지지 않게 해보기~~ 개발 완료
-- js 함수에 docstring 달기
+- ~~js 함수에 docstring~~ 달기 완료
 
 ## 코드리뷰 받은 항목 및 적용 현황
 

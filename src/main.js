@@ -26,6 +26,7 @@ const $regameBtn = document.querySelector("#regameBtn");
 const $warnToGptBtn = document.querySelector("#warnBtn");
 const $boardarea_user = document.querySelector("#boardarea_user");
 const $foldBtn = document.querySelector("#foldBtn");
+const $menuCheck = document.querySelector("#menucheck");
 
 let selected_lang = "한국어(Korean)";
 //학습 데이터로 data 변수 세팅
@@ -123,5 +124,17 @@ $foldBtn.addEventListener("click", (e) => {
     e.currentTarget.style.cssText = "--click_toggle: 90deg;";
     bd.style.height = "300px";
     bd.style.overflow = "auto";
+  }
+});
+
+// 토글 메뉴 창 이벤트
+$menuCheck.addEventListener("change", (e) => {
+  e.preventDefault();
+  const $menuWindow = document.querySelector("#menuMain");
+
+  if (e.target.checked) {
+    $menuWindow.style.cssText = "--click_slide: -30vw";
+  } else {
+    $menuWindow.style.cssText = "--click_slide: 30vw";
   }
 });
