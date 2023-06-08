@@ -46,7 +46,7 @@ export function resetDataEn(data) {
     {
       role: "user",
       content:
-        "I want to restart the 'word chain' game with another word. Suggest the word that started the game.",
+        "I want to restart the 'word chain' game with another word. Suggest the word with JSON object form that started the game.",
     },
   ];
   return data;
