@@ -112,10 +112,15 @@
   font-weight: 600;
 }
 
-#menuMain > ul > li > label {
+/* #menuMain > ul > li > label  */
+#modeLabel {
   text-decoration: none;
   color: #9e6d32;
   font-weight: 600;
+}
+
+#modeLabel:hover {
+  cursor: pointer;
 }
 
 #modeCheck {

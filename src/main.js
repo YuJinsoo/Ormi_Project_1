@@ -145,9 +145,12 @@ $menuCheck.addEventListener("change", (e) => {
 $modeCheck.addEventListener("change", (e) => {
   e.preventDefault();
 
-  // const $uinput = document.querySelector("#userInput");
   const $index = document.querySelector("#index");
   const $wordboard = document.querySelector("#wordboard");
+
+  const $buttons = document.querySelectorAll(".btndafault");
+  const $message = document.querySelector("#message");
+
   if (e.target.checked) {
     $body.style.backgroundColor = "rgb(8, 14, 46)";
     $header.style.backgroundColor = "rgb(8, 14, 46)";
@@ -159,6 +162,11 @@ $modeCheck.addEventListener("change", (e) => {
     $infoSection.style.borderColor = "#828282";
 
     $wordboard.style.borderColor = "#828282";
+    $message.style.color = "white";
+
+    for (let n of $buttons) {
+      n.style.boxShadow = "0 5px 10px 0 rgba(255, 255, 255, 0.8)";
+    }
   } else {
     $body.style.backgroundColor = "White";
     $header.style.backgroundColor = "White";
@@ -169,5 +177,10 @@ $modeCheck.addEventListener("change", (e) => {
     $infoSection.style.borderColor = "#eee";
 
     $wordboard.style.borderColor = "#eee";
+    $message.style.color = "black";
+
+    for (let n of $buttons) {
+      n.style.boxShadow = "0 5px 10px 0 rgba(0, 0, 0, 0.5)";
+    }
   }
 });

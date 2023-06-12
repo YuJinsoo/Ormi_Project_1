@@ -12,6 +12,10 @@
   margin: 0px 5px;
 }
 
+.btndafault:hover {
+  cursor: pointer;
+}
+
 .btndafault:active {
   transition-duration: 0.2s;
   box-shadow: none;
