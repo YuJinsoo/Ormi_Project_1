@@ -27,7 +27,7 @@
   color: #aaa;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .btndafault {
     padding: 5px 10px;
   }

@@ -122,7 +122,7 @@
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   #logolink {
     margin-left: 10px;
   }
@@ -147,6 +147,10 @@
     width: 15px;
   }
   #menuMain > ul > li > a {
+    font-size: x-small;
+  }
+
+  #menuMain > ul > li > label {
     font-size: x-small;
   }
 }

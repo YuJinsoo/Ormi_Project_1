@@ -40,7 +40,7 @@
   margin: 10px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   #answerSection {
     margin: 3px, auto;
   }
@@ -111,7 +111,7 @@
   margin: 5px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   #wordboard {
     font-size: x-small;
     width: 90%;

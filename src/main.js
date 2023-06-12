@@ -159,7 +159,7 @@ $modeCheck.addEventListener("change", (e) => {
   } else {
     $body.style.backgroundColor = "White";
     $header.style.backgroundColor = "White";
-    $header.style.borderColor = "#828282";
+    $header.style.borderColor = "#ddd";
     $footer.style.backgroundColor = "#eee";
 
     $index.style.borderColor = "#eee";

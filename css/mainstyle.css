@@ -19,7 +19,7 @@ h1 {
   margin-left: 15%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   body {
     padding-top: 55px;
   }
@@ -61,7 +61,7 @@ h1 {
   padding-bottom: 50px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   #footer > div {
     font-size: xx-small;
   }
@@ -75,6 +75,8 @@ h1 {
   width: 70%;
   min-width: 500px;
   margin: 10px auto;
+  padding: 10px 0px;
+  border-top: solid 2px #ddd;
 }
 
 #index {
@@ -97,9 +99,9 @@ h1 {
 #userInput {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 5px;
-  border-top: solid 2px #ddd;
 }
 
 #userInput > form {
@@ -109,7 +111,7 @@ h1 {
   padding: 0px;
 }
 
-#userInput > form > input {
+#answerText {
   margin: 0 5px 0 5px;
   height: 93%;
   border: 2px solid #cc8c3f;
@@ -118,11 +120,19 @@ h1 {
   font-size: medium;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 860px) {
+  #userInput {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
   #infoSection {
     width: 90%;
     min-width: 200px;
-    margin: 5px auto;
+    margin: 0px auto;
   }
 
   #buttonArea {
@@ -132,12 +142,6 @@ h1 {
   #buttonArea > button > img {
     width: 15px;
     object-fit: contain;
-  }
-
-  #userInput {
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 10px;
   }
 
   #userInput > form > input {
