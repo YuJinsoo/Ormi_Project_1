@@ -2,6 +2,7 @@ import { headerGenerator } from "./component/header.js";
 import { inputSectionGenerator } from "./component/inputSection.js";
 import { answerSectionGenerator } from "./component/answerSection.js";
 import { footerGenerator } from "./component/footer.js";
+import { titleGenerator } from "./component/title.js";
 
 import * as utils from "./utils.js";
 import { openLoading, closeLoading } from "./loading.js";
@@ -12,15 +13,17 @@ const $header = headerGenerator();
 const $infoSection = inputSectionGenerator();
 const $ansSection = answerSectionGenerator();
 const $footer = footerGenerator();
+const $title = titleGenerator();
 
 $body.prepend($header);
-$body.append($infoSection);
-$body.append($ansSection);
+$body.prepend($infoSection);
+$body.prepend($ansSection);
+$body.prepend($title);
 $body.append($footer);
 
 // 이벤트 발생할 node들 get
 const $selbox = document.querySelector("#langselect");
-const $input = document.querySelector("input");
+const $input = document.querySelector("#answerText");
 const $answerBtn = document.querySelector("#answerBtn");
 const $regameBtn = document.querySelector("#regameBtn");
 const $warnToGptBtn = document.querySelector("#warnBtn");
@@ -28,7 +31,7 @@ const $boardarea_user = document.querySelector("#boardarea_user");
 const $foldBtn = document.querySelector("#foldBtn");
 const $menuCheck = document.querySelector("#menucheck");
 
-let selected_lang = "한국어(Korean)";
+let selected_lang = "Korean";
 //학습 데이터로 data 변수 세팅
 let data = [];
 data = utils.gameStartSetting(data, selected_lang);
@@ -87,11 +90,13 @@ $warnToGptBtn.addEventListener("click", (e) => {
 // 다시시작 버튼 이벤트
 $regameBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  console.log(selected_lang);
   data = utils.gameStartSetting(data, selected_lang);
   utils.changeScoreTag();
   $startBtn.disabled = false;
   $answerBtn.disabled = true;
   $warnToGptBtn.disabled = true;
+  $input.value = "";
   document.querySelector("#message").textContent = "";
 
   const gNodes = document.querySelector("#boardarea_gpt");

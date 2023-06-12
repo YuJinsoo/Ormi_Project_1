@@ -38,7 +38,7 @@ export function inputSectionGenerator() {
   formbox.autofocus = true;
 
   // input 생성
-  let inText = createNode("input");
+  let inText = createNode("input", "answerText");
   inText.type = "text";
   inText.placeholder = "단어를 입력해주세요";
   formbox.append(inText);

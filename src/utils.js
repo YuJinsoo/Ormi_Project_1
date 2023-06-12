@@ -28,7 +28,7 @@ function chatGptAPI(data) {
   })
     .then((res) => res.json())
     .then((res) => {
-      const api_content = res.choices[0].message.content;
+      let api_content = res.choices[0].message.content;
 
       if (api_content.indexOf("{") === -1 || api_content.indexOf("}") === -1) {
         throw new Error(
@@ -250,7 +250,7 @@ function gameStartSetting(data, selected_lang) {
   user_count = 0;
   gpt_count = 0;
 
-  if (selected_lang === "한국어(Korean)") {
+  if (selected_lang === "Korean") {
     data = resetDataKo(data);
   } else {
     data = resetDataEn(data);

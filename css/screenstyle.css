@@ -4,13 +4,14 @@
   flex-wrap: wrap;
   min-width: 500px;
   width: 70%;
-  margin: 0 auto;
+  margin: 10px auto;
+  border-top: solid 2px #aaa;
 }
 
 #screen {
   position: relative;
-  /* height: 300px; */
-  height: 90%;
+  min-height: 200px;
+  max-height: 300px;
 }
 
 .container {
@@ -22,12 +23,13 @@
   width: 100vw;
   float: left;
   position: relative;
+  background-color: white;
 }
 
 .inner img {
   width: 90%;
-  height: 400px;
-  opacity: 0.4;
+  /* height: 300px; */
+  opacity: 0.3;
 }
 
 @media screen and (max-width: 600px) {
