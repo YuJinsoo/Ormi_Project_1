@@ -4,7 +4,7 @@ import { createNode } from "./createNode.js";
  * header를 생성해서 Node를 반환합니다.
  * 반환된 Node를 main.js에서 body에 append해주세요.
  */
-export function answerSectionGenerator() {
+function answerSectionGenerator() {
   let resultNode = createNode("section", "answerSection");
 
   // id index 생성
@@ -31,25 +31,19 @@ export function answerSectionGenerator() {
   // id wordboard 생성
   let board = createNode("div", "wordboard");
 
-  let boardGpt = createNode("div", "boardarea_gpt");
-  let dummyG = createNode("div");
-  dummyG.innerText = "dummy Answers";
-  dummyG.style.color = "#fdf4e8";
-  boardGpt.append(dummyG);
-  board.append(boardGpt);
-
   let boardBlank = createNode("div", "boardarea_blank");
   let foldbtn = createNode("button", "foldBtn");
   foldbtn.innerText = "》";
   foldbtn.style.cssText = "--click_toggle: -90deg;";
   boardBlank.append(foldbtn);
-  board.append(boardBlank);
 
+  let boardGpt = createNode("div", "boardarea_gpt");
   let boardUser = createNode("div", "boardarea_user");
-  let dummyU = createNode("div");
-  dummyU.innerText = "dummy Answers";
-  dummyU.style.color = "#fdf4e8";
-  boardUser.append(dummyU);
+
+  wordBoardSet(boardUser, boardGpt);
+
+  board.append(boardGpt);
+  board.append(boardBlank);
   board.append(boardUser);
 
   resultNode.append(index);
@@ -61,6 +55,29 @@ export function answerSectionGenerator() {
 
   return resultNode;
 }
+
+/**
+ * 단어 보드의 공백때문에 UI깨짐 방지를 위해 dummy Node를 추가해주는 함수
+ * @param {DOM Object} userSide id have to be boardarea_user
+ * @param {DOM Object} gtpSide  id have to be boardarea_gpt
+ * @returns
+ */
+function wordBoardSet(userSide, gptSide) {
+  if (userSide.id === "boardarea_user" && gptSide.id === "boardarea_gpt") {
+    let dummyG = createNode("div");
+    dummyG.innerText = "dummy Answers";
+    dummyG.style.color = "#fdf4e8";
+    gptSide.append(dummyG);
+
+    let dummyU = createNode("div");
+    dummyU.innerText = "dummy Answers";
+    dummyU.style.color = "#fdf4e8";
+    userSide.append(dummyU);
+  }
+  return;
+}
+
+export { answerSectionGenerator, wordBoardSet };
 
 /* 
 <section id="answerSection">

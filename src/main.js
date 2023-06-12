@@ -1,6 +1,9 @@
 import { headerGenerator } from "./component/header.js";
 import { inputSectionGenerator } from "./component/inputSection.js";
-import { answerSectionGenerator } from "./component/answerSection.js";
+import {
+  answerSectionGenerator,
+  wordBoardSet,
+} from "./component/answerSection.js";
 import { footerGenerator } from "./component/footer.js";
 import { titleGenerator } from "./component/title.js";
 
@@ -91,7 +94,6 @@ $warnToGptBtn.addEventListener("click", (e) => {
 // 다시시작 버튼 이벤트
 $regameBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(selected_lang);
   data = utils.gameStartSetting(data, selected_lang);
   utils.changeScoreTag();
   $startBtn.disabled = false;
@@ -112,6 +114,8 @@ $regameBtn.addEventListener("click", (e) => {
   // or
   //gNodes.innerHTML = "";
   //uNodes.innerHTML = "";
+
+  wordBoardSet(uNodes, gNodes);
 });
 
 // 접기버튼 클릭 이벤트 : 180도 회전 토글 기능
