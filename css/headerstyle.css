@@ -94,13 +94,19 @@
 }
 
 #menuMain > ul > li {
-  padding: 10px 5px;
-  margin: 5px 5px;
+  padding: 10px 0px;
+  margin: 5px;
   border-bottom: solid 2px #ccc;
+}
+
+#menuMain > ul > li:hover {
+  background-color: #ccc;
 }
 
 #menuMain > ul > li > a {
   text-decoration: none;
+  color: #9e6d32;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 600px) {
@@ -126,5 +132,8 @@
 
   #menu > img {
     width: 15px;
+  }
+  #menuMain > ul > li > a {
+    font-size: x-small;
   }
 }

@@ -72,12 +72,8 @@ $answerBtn.addEventListener("click", (e) => {
   utils.answers.user.push(userInputData);
   utils.checkCorrectWord(userInputData, "user");
 
-  // 학습 data 갱신
   utils.appendData(data, "user", wrapInputData);
-  // 태그 추가해서 내용 표현
   utils.answerTagAdder(userInputData, $boardarea_user);
-
-  // api로 내 답변 전송
   utils.chatGptAPI(data);
 });
 
