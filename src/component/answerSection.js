@@ -32,6 +32,10 @@ export function answerSectionGenerator() {
   let board = createNode("div", "wordboard");
 
   let boardGpt = createNode("div", "boardarea_gpt");
+  let dummyG = createNode("div");
+  dummyG.innerText = "dummy Answers";
+  dummyG.style.color = "#fdf4e8";
+  boardGpt.append(dummyG);
   board.append(boardGpt);
 
   let boardBlank = createNode("div", "boardarea_blank");
@@ -42,6 +46,10 @@ export function answerSectionGenerator() {
   board.append(boardBlank);
 
   let boardUser = createNode("div", "boardarea_user");
+  let dummyU = createNode("div");
+  dummyU.innerText = "dummy Answers";
+  dummyU.style.color = "#fdf4e8";
+  boardUser.append(dummyU);
   board.append(boardUser);
 
   resultNode.append(index);
