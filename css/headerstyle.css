@@ -112,6 +112,16 @@
   font-weight: 600;
 }
 
+#menuMain > ul > li > label {
+  text-decoration: none;
+  color: #9e6d32;
+  font-weight: 600;
+}
+
+#modeCheck {
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
   #logolink {
     margin-left: 10px;

@@ -12,13 +12,18 @@ export function menuGenerator() {
   m1.append(a1);
   list.append(m1);
 
-  //   let m2 = createNode("li");
-  //   let a2 = createNode("a");
-  //   a2.href = "";
-  //   a2.innerText = "project";
+  let m2 = createNode("li");
+  let mode = createNode("label", "modeLabel");
+  mode.innerText = "dark mode on/off";
 
-  //   m2.append(a2);
-  //   list.append(m2);
+  let modeinput = createNode("input", "modeCheck");
+  modeinput.type = "checkbox";
+
+  mode.for = "modeCheck";
+  mode.append(modeinput);
+  m2.append(mode);
+
+  list.append(m2);
 
   //   let m3 = createNode("li");
   //   let a3 = createNode("a");

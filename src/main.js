@@ -30,6 +30,7 @@ const $warnToGptBtn = document.querySelector("#warnBtn");
 const $boardarea_user = document.querySelector("#boardarea_user");
 const $foldBtn = document.querySelector("#foldBtn");
 const $menuCheck = document.querySelector("#menucheck");
+const $modeCheck = document.querySelector("#modeCheck");
 
 let selected_lang = "Korean";
 //학습 데이터로 data 변수 세팅
@@ -137,5 +138,31 @@ $menuCheck.addEventListener("change", (e) => {
     $menuWindow.style.cssText = "--click_slide: -30vw";
   } else {
     $menuWindow.style.cssText = "--click_slide: 30vw";
+  }
+});
+
+// 다크모드 on/off 메뉴 이벤트
+$modeCheck.addEventListener("change", (e) => {
+  e.preventDefault();
+
+  const $uinput = document.querySelector("#userInput");
+  const $index = document.querySelector("#index");
+  if (e.target.checked) {
+    $body.style.backgroundColor = "rgb(8, 14, 46)";
+    $header.style.backgroundColor = "rgb(8, 14, 46)";
+    $header.style.borderColor = "#828282";
+    $footer.style.backgroundColor = "rgb(8, 14, 46)";
+    $footer.style.borderColor = "#828282";
+
+    $index.style.borderColor = "#828282";
+    $uinput.style.borderColor = "#828282";
+  } else {
+    $body.style.backgroundColor = "White";
+    $header.style.backgroundColor = "White";
+    $header.style.borderColor = "#828282";
+    $footer.style.backgroundColor = "#eee";
+
+    $index.style.borderColor = "#eee";
+    $uinput.style.borderColor = "#eee";
   }
 });
