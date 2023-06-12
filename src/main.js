@@ -145,8 +145,9 @@ $menuCheck.addEventListener("change", (e) => {
 $modeCheck.addEventListener("change", (e) => {
   e.preventDefault();
 
-  const $uinput = document.querySelector("#userInput");
+  // const $uinput = document.querySelector("#userInput");
   const $index = document.querySelector("#index");
+  const $wordboard = document.querySelector("#wordboard");
   if (e.target.checked) {
     $body.style.backgroundColor = "rgb(8, 14, 46)";
     $header.style.backgroundColor = "rgb(8, 14, 46)";
@@ -155,7 +156,9 @@ $modeCheck.addEventListener("change", (e) => {
     $footer.style.borderColor = "#828282";
 
     $index.style.borderColor = "#828282";
-    $uinput.style.borderColor = "#828282";
+    $infoSection.style.borderColor = "#828282";
+
+    $wordboard.style.borderColor = "#828282";
   } else {
     $body.style.backgroundColor = "White";
     $header.style.backgroundColor = "White";
@@ -163,6 +166,8 @@ $modeCheck.addEventListener("change", (e) => {
     $footer.style.backgroundColor = "#eee";
 
     $index.style.borderColor = "#eee";
-    $uinput.style.borderColor = "#eee";
+    $infoSection.style.borderColor = "#eee";
+
+    $wordboard.style.borderColor = "#eee";
   }
 });
