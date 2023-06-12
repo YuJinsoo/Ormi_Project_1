@@ -41,6 +41,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: small;
 }
 
 #langselect {
@@ -62,7 +63,9 @@
 }
 
 #menu > img {
-  width: 25px;
+  padding-top: 5px;
+  padding-right: 5px;
+  width: 20px;
   /* https://codepen.io/sosuke/pen/Pjoqqp 에서 값 생성 */
   filter: invert(50%) sepia(10%) saturate(15%) hue-rotate(59deg) brightness(91%)
     contrast(84%);
