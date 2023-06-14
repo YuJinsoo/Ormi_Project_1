@@ -49,6 +49,7 @@
 │      3.jpg
 │      Circles-menu-3.gif
 │      Hourglass.gif
+│      menu.svg
 │      refresh.png
 │      versus.png
 │
@@ -58,10 +59,18 @@
 │
 ├─css
 │      buttonstyle.css
+│      headerstyle.css
 │      loadingstyle.css
 │      mainstyle.css
 │      scoreboardstyle.css
 │      screenstyle.css
+│
+├─readme
+│      en.gif
+│      main.gif
+│      menu.gif
+│      mobile.gif
+│      slider.gif
 │
 └─src
     │  loading.js
@@ -75,6 +84,8 @@
     │      footer.js
     │      header.js
     │      inputSection.js
+    │      menuGenerator.js
+    │      title.js
     │
     └─dataset
             dataset_en.js
@@ -86,6 +97,9 @@
 - 2023-05-25 ~ 2023-06-14
 
 ## 동작 화면
+
+1. 게임 진행 화면
+   <img src="./readme/main.gif">
 
 ## 개발 이슈
 
