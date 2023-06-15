@@ -1,0 +1,80 @@
+/* inputSection 요소 부분*/
+#infoSection {
+  width: 70%;
+  min-width: 500px;
+  margin: 10px auto;
+  padding: 10px 0px;
+  border-top: solid 2px #ddd;
+}
+
+#index {
+  color: #cc8c3f;
+  padding: 10px 0px;
+}
+
+#buttonArea {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+#buttonArea > button > img {
+  width: 30px;
+  object-fit: contain;
+}
+
+#userInput {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+#userInput > form {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+#answerText {
+  margin: 0 5px 0 5px;
+  height: 93%;
+  border: 2px solid #cc8c3f;
+  padding-left: 10px;
+  min-width: 150px;
+  font-size: medium;
+}
+
+@media screen and (max-width: 860px) {
+  #userInput {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #infoSection {
+    width: 90%;
+    min-width: 200px;
+    margin: 0px auto;
+  }
+
+  #buttonArea {
+    justify-content: space-around;
+  }
+
+  #buttonArea > button > img {
+    width: 15px;
+    object-fit: contain;
+  }
+
+  #userInput > form > input {
+    font-size: xx-small;
+    padding-left: 5px;
+    min-width: 80px;
+  }
+}

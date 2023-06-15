@@ -6,6 +6,7 @@ import {
 } from "./component/answerSection.js";
 import { footerGenerator } from "./component/footer.js";
 import { titleGenerator } from "./component/title.js";
+import { startButtonGenerator } from "./component/start.js";
 
 import * as utils from "./utils.js";
 import { openLoading, closeLoading } from "./loading.js";
@@ -17,10 +18,12 @@ const $infoSection = inputSectionGenerator();
 const $ansSection = answerSectionGenerator();
 const $footer = footerGenerator();
 const $title = titleGenerator();
+const $startBtnSection = startButtonGenerator();
 
 $body.prepend($header);
 $body.prepend($infoSection);
 $body.prepend($ansSection);
+$body.prepend($startBtnSection);
 $body.prepend($title);
 $body.append($footer);
 

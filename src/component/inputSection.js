@@ -14,9 +14,9 @@ export function inputSectionGenerator() {
   let buttons = createNode("div", "buttonArea");
 
   // 시작버튼
-  let strBtn = createNode("button", "startBtn", "btndafault btnstyle");
-  strBtn.textContent = "시작";
-  buttons.append(strBtn);
+  // let strBtn = createNode("button", "startBtn", "btndafault btnstyle");
+  // strBtn.textContent = "시작";
+  // buttons.append(strBtn);
 
   // 새로고침 버튼
   let reBtn = createNode("button", "regameBtn", "btndafault btnstyle");

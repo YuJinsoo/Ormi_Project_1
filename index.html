@@ -10,39 +10,45 @@
     <!-- sweetalert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- custom css -->
+    <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/headerstyle.css" />
     <link rel="stylesheet" href="./css/mainstyle.css" />
     <link rel="stylesheet" href="./css/screenstyle.css" />
     <link rel="stylesheet" href="./css/buttonstyle.css" />
     <link rel="stylesheet" href="./css/scoreboardstyle.css" />
+    <link rel="stylesheet" href="./css/inputstyle.css" />
     <link rel="stylesheet" href="./css/loadingstyle.css" />
   </head>
   <body>
     <section id="screenSection">
-      <div id="screen" style="overflow: hidden">
-        <label class="left">《</label>
-        <label class="right">》</label>
+      <div id="screen">
+        <button class="left">《</button>
+        <button class="right">》</button>
         <div class="container">
           <div class="inner">
-            <img src="./asset/1.jpg" alt="" />
+            <img src="./asset/1.jpg" alt="산 배경화면" />
             <h2 class="screentitle">GPT와 겨루는 끝말잇기 한판!</h2>
             <div class="screentext">
-              gpt와 끝말잇기를 해서 승리해보세요!<br />게임규칙을 보려면 다음
-              화면을 확인해주세요!
+              <p>gpt와 끝말잇기를 해서 승리해보세요!</p>
+              <p>게임규칙을 보려면 다음 화면을 확인해주세요!</p>
             </div>
           </div>
           <div class="inner">
-            <img src="./asset/2.jpg" alt="" />
+            <img src="./asset/2.jpg" alt="숲 배경화면" />
             <h2 class="screentitle">게임규칙 설명!</h2>
             <div class="screentext">
-              1. 실패 카운트가 2이 되는 순간 패배합니다.<br />
-              2. gpt의 단어가 이상하다면 'gpt에게 경고!' 버튼을 눌러주세요.<br />
-              3. 상대가 말한 단어에 이어서 단어를 말하세요.<br />
-              4. gpt API의 응답에 따라 게임을 다시 시작해야 할 수 있습니다.<br />
+              <p>1. 실패 카운트가 2이 되는 순간 패배합니다.</p>
+              <p>
+                2. gpt의 단어가 이상하다면 'gpt에게 경고!' 버튼을 눌러주세요.
+              </p>
+              <p>3. 상대가 말한 단어에 이어서 단어를 말하세요.</p>
+              <p>
+                4. gpt API의 응답에 따라 게임을 다시 시작해야 할 수 있습니다.
+              </p>
             </div>
           </div>
           <div class="inner">
-            <img src="./asset/3.jpg" alt="" />
+            <img src="./asset/3.jpg" alt="바다절벽 배경화면" />
           </div>
         </div>
       </div>

@@ -1,38 +1,53 @@
 body {
   display: flex;
   flex-direction: column;
-  margin: 0;
   width: 100%;
   height: 100vh;
-  padding-top: 55px;
-  /* background-color: rgb(8, 14, 46); */
+  padding-top: 100px;
 }
 
 h1 {
   color: #cc8c3f;
-  margin-left: 15%;
+  /* margin-left: 15%; */
+  margin: 0 0 30px 0;
+  font-size: xx-large;
+  font-weight: 700;
+  text-align: center;
 }
 
 #explanation {
-  display: inline-block;
+  /* display: inline-block; */
   color: #cc8c3f;
-  margin-left: 15%;
+  /* margin-left: 15%; */
+  margin: 0;
+  text-align: center;
+  line-height: 2;
 }
 
 @media screen and (max-width: 700px) {
   body {
-    padding-top: 55px;
+    padding-top: 80px;
   }
 
   h1 {
     font-size: x-large;
-    margin-left: 5%;
   }
 
   #explanation {
     font-size: x-small;
-    margin-left: 5%;
   }
+}
+
+/* startbtn section*/
+#startBtnSection {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+#startBtnSection button {
+  padding: 20px 30px;
+  font-size: x-large;
 }
 
 /* footer 요소 부분 */
@@ -67,86 +82,5 @@ h1 {
   }
   #footer {
     height: 40vh;
-  }
-}
-
-/* inputSection 요소 부분*/
-#infoSection {
-  width: 70%;
-  min-width: 500px;
-  margin: 10px auto;
-  padding: 10px 0px;
-  border-top: solid 2px #ddd;
-}
-
-#index {
-  color: #cc8c3f;
-  padding: 10px 0px;
-}
-
-#buttonArea {
-  display: flex;
-  justify-content: center;
-  margin: 0px;
-  padding: 0px;
-}
-
-#buttonArea > button > img {
-  width: 30px;
-  object-fit: contain;
-}
-
-#userInput {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 5px;
-}
-
-#userInput > form {
-  display: flex;
-  justify-content: center;
-  margin: 0px;
-  padding: 0px;
-}
-
-#answerText {
-  margin: 0 5px 0 5px;
-  height: 93%;
-  border: 2px solid #cc8c3f;
-  padding-left: 10px;
-  min-width: 150px;
-  font-size: medium;
-}
-
-@media screen and (max-width: 860px) {
-  #userInput {
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  #infoSection {
-    width: 90%;
-    min-width: 200px;
-    margin: 0px auto;
-  }
-
-  #buttonArea {
-    justify-content: space-around;
-  }
-
-  #buttonArea > button > img {
-    width: 15px;
-    object-fit: contain;
-  }
-
-  #userInput > form > input {
-    font-size: xx-small;
-    padding-left: 5px;
-    min-width: 80px;
   }
 }
