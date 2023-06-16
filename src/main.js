@@ -9,7 +9,7 @@ import { titleGenerator } from "./component/title.js";
 import { startButtonGenerator } from "./component/start.js";
 
 import * as utils from "./utils.js";
-import { openLoading, closeLoading } from "./loading.js";
+import { openLoading } from "./loading.js";
 
 // html 생성
 const $body = document.querySelector("body");
@@ -21,15 +21,20 @@ const $title = titleGenerator();
 const $startBtnSection = startButtonGenerator();
 
 $body.prepend($header);
-$body.prepend($infoSection);
 $body.prepend($ansSection);
+$body.prepend($infoSection);
 $body.prepend($startBtnSection);
 $body.prepend($title);
 $body.append($footer);
 
+$infoSection.classList.add("hidden");
+$ansSection.classList.add("hidden");
+//utils.answerButtonsDisplay(false, $infoSection, $ansSection);
+
 // 이벤트 발생할 node들 get
 const $selbox = document.querySelector("#langselect");
 const $input = document.querySelector("#answerText");
+const $startBtn = document.querySelector("#startBtn");
 const $answerBtn = document.querySelector("#answerBtn");
 const $regameBtn = document.querySelector("#regameBtn");
 const $warnToGptBtn = document.querySelector("#warnBtn");
@@ -50,12 +55,12 @@ $selbox.addEventListener("change", (e) => {
 });
 
 // 시작버튼 이벤트
-const $startBtn = document.querySelector("#startBtn");
 $startBtn.addEventListener("click", (e) => {
   e.preventDefault();
   openLoading();
   e.target.disabled = true;
 
+  // utils.answerButtonsDisplay(true, $infoSection, $ansSection);
   document.querySelector("#warnBtn").disabled = false;
   document.querySelector("#answerBtn").disabled = false;
 
@@ -92,6 +97,9 @@ $warnToGptBtn.addEventListener("click", (e) => {
   e.preventDefault();
   e.target.disabled = true;
   utils.checkWarnCount("assistant");
+
+  document.querySelector(".gptScore").classList.remove("bounceAnimation");
+  document.querySelector(".gptScore").classList.add("bounceAnimation");
 });
 
 // 다시시작 버튼 이벤트
@@ -99,6 +107,8 @@ $regameBtn.addEventListener("click", (e) => {
   e.preventDefault();
   data = utils.gameStartSetting(data, selected_lang);
   utils.changeScoreTag();
+  utils.answerButtonsDisplay(false, $infoSection, $ansSection);
+
   $startBtn.disabled = false;
   $answerBtn.disabled = true;
   $warnToGptBtn.disabled = true;

@@ -7,6 +7,30 @@
   justify-content: center;
   align-items: center;
   margin: 20px 0px 10px 0px;
+  transition: all 1s;
+}
+
+.bigScore {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  transition: all 1s;
+}
+
+.scoreValue {
+  display: inline-block;
+  font-size: 5em;
+  margin: 0 8vw;
+}
+
+.gptScore {
+  color: blue;
+}
+
+.userScore {
+  color: red;
 }
 
 #index {

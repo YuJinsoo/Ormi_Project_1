@@ -1,0 +1,61 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounceAnimation {
+  animation-name: bounce;
+  animation-delay: 0.2s;
+  animation-duration: 1.5s;
+}
+
+.hidden {
+  visibility: hidden;
+  display: none;
+  height: 0px;
+}
+
+.appear {
+  animation: fade-in 0.5s;
+  animation-fill-mode: forwards;
+  display: flex;
+  visibility: visible;
+  height: fit-content;
+}
+
+.disappear {
+  animation: fade-out 0.5s;
+  animation-fill-mode: forwards;
+  height: 0;
+}

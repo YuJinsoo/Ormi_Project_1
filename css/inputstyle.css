@@ -1,10 +1,12 @@
 /* inputSection 요소 부분*/
 #infoSection {
+  justify-content: center;
   width: 70%;
   min-width: 500px;
   margin: 10px auto;
   padding: 10px 0px;
   border-top: solid 2px #ddd;
+  transition: all 1s;
 }
 
 #index {

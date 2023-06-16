@@ -183,8 +183,15 @@ function checkWarnCount(side) {
  * 경고점수 태그에 점수를 수정
  */
 function changeScoreTag() {
-  const socre = document.querySelector("#score");
-  socre.innerText = `${gpt_count} : ${user_count}`;
+  const uSocre = document.querySelector(".userScore");
+  uSocre.innerHTML = `${user_count}`;
+  uSocre.classList.remove("bounceAnimation");
+  uSocre.classList.add("bounceAnimation");
+
+  const gSocre = document.querySelector(".gptScore");
+  gSocre.innerHTML = `${gpt_count}`;
+  gSocre.classList.remove("bounceAnimation");
+  gSocre.classList.add("bounceAnimation");
 }
 
 /**
@@ -258,6 +265,21 @@ function gameStartSetting(data, selected_lang) {
   return data;
 }
 
+function answerButtonsDisplay(on, node1, node2) {
+  if (on === true) {
+    node1.classList.add("appear");
+    node2.classList.add("appear");
+    node1.classList.remove("disappear");
+    node2.classList.remove("disappear");
+    return;
+  }
+  node1.classList.add("disappear");
+  node2.classList.add("disappear");
+  node1.classList.remove("appear");
+  node2.classList.remove("appear");
+  return;
+}
+
 export {
   chatGptAPI,
   wrapToJsonForm,
@@ -269,6 +291,7 @@ export {
   printGptMessage,
   checkDuplicated,
   gameStartSetting,
+  answerButtonsDisplay,
   url,
   answers,
 };

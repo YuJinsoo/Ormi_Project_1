@@ -7,6 +7,17 @@ import { createNode } from "./createNode.js";
 function answerSectionGenerator() {
   let resultNode = createNode("section", "answerSection");
 
+  // score
+  const bigScore = createNode("div", null, "bigScore");
+  const gScore = createNode("div", null, "scoreValue gptScore");
+  gScore.innerHTML = "0";
+  const versus = createNode("div", null, "scoreValue");
+  versus.innerHTML = "&#58";
+  const uScore = createNode("div", null, "scoreValue userScore");
+  uScore.innerHTML = "0";
+  bigScore.append(gScore, versus, uScore);
+  resultNode.append(bigScore);
+
   // id index 생성
   let index = createNode("div", "index");
 
@@ -18,11 +29,11 @@ function answerSectionGenerator() {
   let sIndex = createNode("div", null, "scoretable");
   sIndex.innerText = "GPT가 받은 경고";
   scoreBoard.append(sIndex);
-
-  let score = createNode("div", "score");
-  score.innerText = "0 : 0";
-  scoreBoard.append(score);
   index.append(scoreBoard);
+
+  //   let score = createNode("div", "score");
+  //   score.innerText = "0 : 0";
+  //   scoreBoard.append(score);
 
   let userSide = createNode("div", null, "userSide");
   userSide.innerText = "USER ANSWER";
