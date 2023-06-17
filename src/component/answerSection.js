@@ -11,8 +11,8 @@ function answerSectionGenerator() {
   const bigScore = createNode("div", null, "bigScore");
   const gScore = createNode("div", null, "scoreValue gptScore");
   gScore.innerHTML = "0";
-  const versus = createNode("div", null, "scoreValue");
-  versus.innerHTML = "&#58";
+  const versus = createNode("div", null, "scoreValue versusText");
+  versus.innerHTML = "vs";
   const uScore = createNode("div", null, "scoreValue userScore");
   uScore.innerHTML = "0";
   bigScore.append(gScore, versus, uScore);
@@ -27,7 +27,7 @@ function answerSectionGenerator() {
 
   let scoreBoard = createNode("div", null, "scoreboard");
   let sIndex = createNode("div", null, "scoretable");
-  sIndex.innerText = "GPT가 받은 경고";
+  sIndex.innerText = "단어 목록";
   scoreBoard.append(sIndex);
   index.append(scoreBoard);
 
@@ -76,12 +76,12 @@ function answerSectionGenerator() {
 function wordBoardSet(userSide, gptSide) {
   if (userSide.id === "boardarea_user" && gptSide.id === "boardarea_gpt") {
     let dummyG = createNode("div");
-    dummyG.innerText = "dummy Answers";
+    dummyG.innerText = "dummyAnswers";
     dummyG.style.color = "#fdf4e8";
     gptSide.append(dummyG);
 
     let dummyU = createNode("div");
-    dummyU.innerText = "dummy Answers";
+    dummyU.innerText = "dummyAnswers";
     dummyU.style.color = "#fdf4e8";
     userSide.append(dummyU);
   }
