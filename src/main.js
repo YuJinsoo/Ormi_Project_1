@@ -10,7 +10,7 @@ import { startButtonGenerator } from "./component/start.js";
 
 import * as utils from "./utils.js";
 import { openLoading } from "./loading.js";
-import { koWordAPI } from "./wordSearchAPI.js";
+import { koWordAPI, testAPI } from "./wordSearchAPI.js";
 
 // html 생성
 const $body = document.querySelector("body");
@@ -49,7 +49,7 @@ let selected_lang = "Korean";
 let data = [];
 data = utils.gameStartSetting(data, selected_lang);
 
-koWordAPI("나무");
+// koWordAPI("나무");
 
 // 언어선택 이벤트
 $selbox.addEventListener("change", (e) => {
@@ -63,7 +63,7 @@ $startBtn.addEventListener("click", (e) => {
   openLoading();
   e.target.disabled = true;
 
-  // utils.answerButtonsDisplay(true, $infoSection, $ansSection);
+  utils.answerButtonsDisplay(true, $infoSection, $ansSection);
   document.querySelector("#warnBtn").disabled = false;
   document.querySelector("#answerBtn").disabled = false;
 

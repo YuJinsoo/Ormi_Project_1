@@ -241,7 +241,7 @@ function appendData(data, side, dialogdata) {
  * @param {String} text
  */
 function printGptMessage(text) {
-  const mes = document.querySelector("#message");
+  const mes = document.querySelector("#gptmsg");
   mes.innerText = text;
 }
 

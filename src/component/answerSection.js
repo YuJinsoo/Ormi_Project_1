@@ -18,6 +18,10 @@ function answerSectionGenerator() {
   bigScore.append(gScore, versus, uScore);
   resultNode.append(bigScore);
 
+  // 단어 검사 api 응답
+  const wordCheck = createNode("div", "dictmsg", "message");
+  resultNode.append(wordCheck);
+
   // id index 생성
   let index = createNode("div", "index");
 
@@ -61,7 +65,7 @@ function answerSectionGenerator() {
   resultNode.append(board);
 
   //
-  let msg = createNode("div", "message");
+  let msg = createNode("div", "gptmsg", "message");
   resultNode.append(msg);
 
   return resultNode;

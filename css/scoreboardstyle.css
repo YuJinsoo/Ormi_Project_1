@@ -27,6 +27,7 @@
 
 .gptScore {
   color: blue;
+  font-weight: 900;
   background-color: rgb(206, 231, 241);
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -35,6 +36,7 @@
 
 .userScore {
   color: red;
+  font-weight: 900;
   background-color: rgb(241, 206, 206);
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -155,11 +157,22 @@
   margin: 5px;
 }
 
-#message {
+.message {
   display: inline-block;
-  margin-top: 30px;
+  margin: 15px 0px;
+  padding: 5px 0px;
+  border: solid 2px #eee;
+  border-radius: 5px;
   width: 70%;
   text-align: center;
+}
+
+#gptmsg {
+  color: white;
+  background-color: #cc8c3f;
+}
+
+#dictmsg {
 }
 
 @media screen and (max-width: 700px) {
@@ -179,7 +192,7 @@
     width: 60px;
   }
 
-  #message {
+  .message {
     margin-top: 20px;
     width: 70%;
     font-size: xx-small;
