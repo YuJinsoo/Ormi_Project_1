@@ -14,11 +14,17 @@ const url = "https://stdict.korean.go.kr/api/search.do";
 // CORS 회피해주는 프록시 생성해주는 서비스 url
 const proxy = "https://proxy.cors.sh";
 
-export function koWordAPI(word) {
+/**
+ * 성공할 경우 단어 검색 결과를 보내줍니다.
+ * @param {string} word 한국어 단어를 문자열로 입력
+ * @returns api의 리턴데이터(오브젝트)를 포함한 promise 반환합니다. 사전에서 찾을 수 없는 단어일 경우 false를 반환합니다.
+ */
+export async function koWordAPI(word) {
   let key = "5506921242C21452811AFA56D1F94A04";
   // 단어검색, json형식, 일치단어, 명사/대명사 찾기
   let search = `${proxy}/${url}?key=${key}&type_search=search&req_type=json&advanced=y&method=exact&pos=1,2&q=${word}`;
-  fetch(search, {
+
+  const api_result = fetch(search, {
     method: "GET",
     headers: {
       "x-cors-api-key": "temp_3931d496a1be08c7aeb02dc89a05f0eb",
@@ -28,16 +34,29 @@ export function koWordAPI(word) {
     .then((data) => {
       // 검색된 단어가 없으면 data === {}
       if (Object.keys(data).length === 0) {
-        console.log("단어없음!");
+        console.log("사전에서 유효한 단어 없음!");
         return false;
       }
-      console.log(data.channel.total);
-      console.log(data.channel.item);
-      console.log(data.channel.item[0].pos);
-      console.log(data.channel.item[0].sense.definition);
+      // console.log(data.channel.total);
+      // console.log(data.channel.item);
+      // console.log(data.channel.item[0].pos);
+      // console.log(data.channel.item[0].sense.definition);
+      console.log(data)
 
-      return true;
+      return data;
+    })
+    .catch(e=>{
+      // sweetalert2
+      Swal.fire({
+        icon: "warning",
+        title: "사전 API 메시지",
+        text: `${e}`,
+      });
+    })
+    .finally(() =>{
+      console.log('사전 api 끝')
     });
+  return api_result;
 }
 
 // 공기질 api로 open api test

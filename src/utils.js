@@ -1,6 +1,7 @@
 import { openLoading, closeLoading } from "./loading.js";
 import { resetDataKo } from "./dataset/dataset_ko.js";
 import { resetDataEn } from "./dataset/dataset_en.js";
+import { koWordAPI } from "./wordSearchAPI.js";
 
 const count_max = 2;
 let gpt_count = 0;
@@ -16,9 +17,10 @@ const answers = {
 /**
  * 입력한 학습 대화 전달 및 응답 수신
  * @param {Array} data gpt의 응답을 받을 학습 데이터 Array
+ * @returns 추출한 단어를 가진 promise를 리턴함
  */
-function chatGptAPI(data) {
-  fetch(url, {
+async function chatGptAPI(data) {
+  const api_result = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -38,16 +40,16 @@ function chatGptAPI(data) {
 
       const result = parseJsonAnswer(api_content);
       if (result === "") {
-        return;
+        return null;
       }
 
       appendData(data, "assistant", api_content);
       answerTagAdder(result, document.querySelector("#boardarea_gpt"));
 
       document.querySelector("#warnBtn").disabled = false;
-
       checkCorrectWord(result, "assistant");
       printGptMessage(api_content);
+      return result;
     })
     .catch((e) => {
       // sweetalert2
@@ -61,6 +63,7 @@ function chatGptAPI(data) {
     .finally(() => {
       closeLoading();
     });
+    return api_result;
 }
 
 /**
@@ -265,6 +268,39 @@ function gameStartSetting(data, selected_lang) {
   return data;
 }
 
+// function checkWordFromDict(word, selected_lang) {
+  
+//   const msgarea = document.querySelector("#dictmsg")
+  
+//   if (selected_lang === "korean") {
+//     console.log('단어검사')
+//     res = koWordAPI(word);
+//     console.log(res)
+
+//     if (res === false){
+//       msgarea.innerText = `${word}는 사전에서 유효한 단어가 아닙니다!`;
+//     }
+//     else{
+//       msgarea.innerText =`${data.channel.item[0].pos} : ${data.channel.item[0].sense.definition}`;
+//     }
+//   }
+//   else {
+//     msgarea.innerText("영어는 아직 사전 기능이 적용되지 않았습니다.")
+//   }
+
+// }
+
+function writeDictMsg(dictmsg, data){
+  const area = dictmsg;
+
+  if (data === false){
+    area.innerText='사전에 유효한 단어가 없습니다.';
+  }
+  else{
+    area.innerText= `${data.channel.item[0].pos} : ${data.channel.item[0].sense.definition}`;
+  }
+}
+
 function answerButtonsDisplay(on, node1, node2) {
   if (on === true) {
     node1.classList.add("appear");
@@ -292,6 +328,7 @@ export {
   checkDuplicated,
   gameStartSetting,
   answerButtonsDisplay,
+  writeDictMsg,
   url,
   answers,
 };

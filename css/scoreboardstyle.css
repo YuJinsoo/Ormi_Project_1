@@ -173,6 +173,8 @@
 }
 
 #dictmsg {
+  color: white;
+  background-color: blueviolet;
 }
 
 @media screen and (max-width: 700px) {
