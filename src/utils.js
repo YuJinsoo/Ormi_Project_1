@@ -61,7 +61,6 @@ async function chatGptAPI(data) {
       printGptMessage(api_content);
     })
     .finally(() => {
-      closeLoading();
     });
     return api_result;
 }
@@ -154,7 +153,7 @@ function checkCorrectWord(word, side) {
  * 경고 횟수를 카운트하고 초과했을 때 누구가 승리했는지 알림
  * @param {String} side "user" 혹은 "assistant" 만 입력해야 합니다.
  */
-function checkWarnCount(side) {
+function checkScoreCount(side) {
   if (side === "user") {
     user_count++;
   } else if (side === "assistant") {
@@ -162,7 +161,7 @@ function checkWarnCount(side) {
   }
   changeScoreTag();
 
-  if (gpt_count >= count_max) {
+  if (user_count >= count_max) {
     // sweetalert2
     Swal.fire({
       icon: "success",
@@ -171,7 +170,7 @@ function checkWarnCount(side) {
     });
   }
 
-  if (user_count >= count_max) {
+  if (gpt_count >= count_max) {
     // sweetalert2
     Swal.fire({
       icon: "warning",
@@ -321,7 +320,7 @@ export {
   wrapToJsonForm,
   answerTagAdder,
   checkCorrectWord,
-  checkWarnCount,
+  checkScoreCount,
   changeScoreTag,
   appendData,
   printGptMessage,

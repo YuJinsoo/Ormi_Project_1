@@ -9,7 +9,7 @@ import { titleGenerator } from "./component/title.js";
 import { startButtonGenerator } from "./component/start.js";
 
 import * as utils from "./utils.js";
-import { openLoading } from "./loading.js";
+import { closeLoading, openLoading } from "./loading.js";
 import { koWordAPI, testAPI } from "./wordSearchAPI.js";
 
 // html 생성
@@ -43,7 +43,8 @@ const $boardarea_user = document.querySelector("#boardarea_user");
 const $foldBtn = document.querySelector("#foldBtn");
 const $menuCheck = document.querySelector("#menucheck");
 const $modeCheck = document.querySelector("#modeCheck");
-const $dictmsg = document.querySelector("#dictmsg")
+const $dictmsg = document.querySelector("#dictmsg");
+const $gptmsg = document.querySelector("#gptmsg");
 
 let selected_lang = "Korean";
 //학습 데이터로 data 변수 세팅
@@ -67,6 +68,7 @@ $startBtn.addEventListener("click", (e) => {
   utils.answerButtonsDisplay(true, $infoSection, $ansSection);
   document.querySelector("#warnBtn").disabled = false;
   document.querySelector("#answerBtn").disabled = false;
+  $dictmsg.innerText = '';
 
   // 추출한 단어를 가진 promise를 리턴함
   let api_result = utils.chatGptAPI(data);
@@ -76,8 +78,7 @@ $startBtn.addEventListener("click", (e) => {
       utils.writeDictMsg($dictmsg, res);
 
       if (res === false){
-        //TODO 점수반영 구현
-        console.log('gpt 점수 잃음')
+        utils.checkScoreCount("user");
         return;
       }
 
@@ -87,7 +88,9 @@ $startBtn.addEventListener("click", (e) => {
       
     })
     .catch()
-    .finally();
+    .finally(()=>{
+      closeLoading();
+    });
   })
 });
 
@@ -113,14 +116,40 @@ $answerBtn.addEventListener("click", (e) => {
 
   utils.appendData(data, "user", wrapInputData);
   utils.answerTagAdder(userInputData, $boardarea_user);
-  utils.chatGptAPI(data)
+
+  // 추출한 단어를 가진 promise를 리턴함
+  let api_result = utils.chatGptAPI(data);
+  api_result.then( word => {
+    let dict_result = koWordAPI(word);
+    dict_result.then( res => {
+      utils.writeDictMsg($dictmsg, res);
+
+      if (res === false){
+        utils.checkScoreCount("user");
+        return;
+      }
+
+      if (res.channel.total <= 1){
+        //TODO 게임진행 구현
+      }
+      
+    })
+    .catch(e =>{
+      //swal
+      Swal.fire({icon: "warning",
+      text: `${e}`})
+    })
+    .finally(()=>{
+      closeLoading();
+    });
+  })
 });
 
 //경고횟수 늘리는 이벤트
 $warnToGptBtn.addEventListener("click", (e) => {
   e.preventDefault();
   e.target.disabled = true;
-  utils.checkWarnCount("assistant");
+  utils.checkScoreCount("user");
 
   document.querySelector(".gptScore").classList.remove("bounceAnimation");
   document.querySelector(".gptScore").classList.add("bounceAnimation");
@@ -137,7 +166,8 @@ $regameBtn.addEventListener("click", (e) => {
   $answerBtn.disabled = true;
   $warnToGptBtn.disabled = true;
   $input.value = "";
-  document.querySelector("#message").textContent = "";
+  $gptmsg.innerText = "";
+  $dictmsg.innerText = "";
 
   const gNodes = document.querySelector("#boardarea_gpt");
   const uNodes = document.querySelector("#boardarea_user");

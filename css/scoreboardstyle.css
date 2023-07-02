@@ -159,8 +159,8 @@
 
 .message {
   display: inline-block;
-  margin: 15px 0px;
-  padding: 5px 0px;
+  margin: 0px 0px 15px 0px;
+  padding: 2em 0px;
   border: solid 2px #eee;
   border-radius: 5px;
   width: 70%;
@@ -175,6 +175,13 @@
 #dictmsg {
   color: white;
   background-color: blueviolet;
+}
+
+.sideName {
+  text-align: center;
+  margin : 0px 0px 15px 0px;
+  font-weight: 800;
+  color: #cc8c3f;
 }
 
 @media screen and (max-width: 700px) {
@@ -195,8 +202,7 @@
   }
 
   .message {
-    margin-top: 20px;
-    width: 70%;
+    width: 90%;
     font-size: xx-small;
   }
 }

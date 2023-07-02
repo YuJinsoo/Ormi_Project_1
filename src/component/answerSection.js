@@ -9,13 +9,25 @@ function answerSectionGenerator() {
 
   // score
   const bigScore = createNode("div", null, "bigScore");
+
+  const gptScore = createNode("div", null, null);
+  const gptScoreName = createNode("div", null, "sideName");
   const gScore = createNode("div", null, "scoreValue gptScore");
+  gptScoreName.innerHTML = "GPT Score";
   gScore.innerHTML = "0";
+  gptScore.append(gptScoreName, gScore);
+  
   const versus = createNode("div", null, "scoreValue versusText");
   versus.innerHTML = "vs";
+  
+  const userScore = createNode("div", null, null);
+  const userScoreName = createNode("div", null, "sideName");
   const uScore = createNode("div", null, "scoreValue userScore");
+  userScoreName.innerHTML = "USER Score";
   uScore.innerHTML = "0";
-  bigScore.append(gScore, versus, uScore);
+  userScore.append(userScoreName, uScore)
+
+  bigScore.append(gptScore, versus, userScore);
   resultNode.append(bigScore);
 
   // 단어 검사 api 응답
