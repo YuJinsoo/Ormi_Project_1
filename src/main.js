@@ -185,7 +185,7 @@ $regameBtn.addEventListener("click", (e) => {
   //uNodes.innerHTML = "";
 
   wordBoardSet(uNodes, gNodes);
-  utils.scrollToStart();
+  utils.scrollToTop();
 });
 
 // 접기버튼 클릭 이벤트 : 180도 회전 토글 기능

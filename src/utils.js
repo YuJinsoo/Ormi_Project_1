@@ -316,7 +316,8 @@ function answerButtonsDisplay(on, node1, node2) {
 }
 
 function scrollToGame() {
-  let movetoY = window.pageYOffset + $startBtn.getBoundingClientRect().y;
+  // let movetoY = window.pageYOffset + $("#startBtn").getBoundingClientRect().y;
+  let movetoY = window.pageYOffset + $("#startBtn").offset().top;
   $("html, body").animate(
     {
       scrollTop: movetoY,
@@ -325,7 +326,7 @@ function scrollToGame() {
   );
 }
 
-function scrollToStart(){
+function scrollToTop(){
   $("html, body").animate(
     {
       scrollTop: 0,
@@ -348,7 +349,7 @@ export {
   answerButtonsDisplay,
   writeDictMsg,
   scrollToGame,
-  scrollToStart,
+  scrollToTop,
   url,
   answers,
 };
