@@ -90,9 +90,11 @@ $startBtn.addEventListener("click", (e) => {
     .catch()
     .finally(()=>{
       closeLoading();
+      utils.scrollToGame();
     });
   })
 });
+
 
 // 답변 보내기 버튼 이벤트
 $answerBtn.addEventListener("click", (e) => {
@@ -183,6 +185,7 @@ $regameBtn.addEventListener("click", (e) => {
   //uNodes.innerHTML = "";
 
   wordBoardSet(uNodes, gNodes);
+  utils.scrollToStart();
 });
 
 // 접기버튼 클릭 이벤트 : 180도 회전 토글 기능

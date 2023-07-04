@@ -315,6 +315,25 @@ function answerButtonsDisplay(on, node1, node2) {
   return;
 }
 
+function scrollToGame() {
+  let movetoY = window.pageYOffset + $startBtn.getBoundingClientRect().y;
+  $("html, body").animate(
+    {
+      scrollTop: movetoY,
+    },
+    500
+  );
+}
+
+function scrollToStart(){
+  $("html, body").animate(
+    {
+      scrollTop: 0,
+    },
+    500
+  );
+}
+
 export {
   chatGptAPI,
   wrapToJsonForm,
@@ -328,6 +347,8 @@ export {
   gameStartSetting,
   answerButtonsDisplay,
   writeDictMsg,
+  scrollToGame,
+  scrollToStart,
   url,
   answers,
 };

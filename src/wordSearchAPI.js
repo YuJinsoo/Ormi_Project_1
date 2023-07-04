@@ -34,14 +34,14 @@ export async function koWordAPI(word) {
     .then((data) => {
       // 검색된 단어가 없으면 data === {}
       if (Object.keys(data).length === 0) {
-        console.log("사전에서 유효한 단어 없음!");
+        // console.log("사전에서 유효한 단어 없음!");
         return false;
       }
       // console.log(data.channel.total);
       // console.log(data.channel.item);
       // console.log(data.channel.item[0].pos);
       // console.log(data.channel.item[0].sense.definition);
-      console.log(data)
+      // console.log(data)
 
       return data;
     })
@@ -54,7 +54,7 @@ export async function koWordAPI(word) {
       });
     })
     .finally(() =>{
-      console.log('사전 api 끝')
+      // console.log('사전 api 끝')
     });
   return api_result;
 }
