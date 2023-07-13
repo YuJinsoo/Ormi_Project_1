@@ -12,6 +12,8 @@ import * as utils from "./utils.js";
 import { closeLoading, openLoading } from "./loading.js";
 import { koWordAPI, testAPI } from "./wordSearchAPI.js";
 
+// TODO 반응형 메뉴 리스트 이벤트 연결하기
+
 // html 생성
 const $body = document.querySelector("body");
 const $header = headerGenerator();
