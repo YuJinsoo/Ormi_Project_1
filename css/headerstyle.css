@@ -16,6 +16,21 @@
   padding-bottom: 5px;
 }
 
+#head {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logodiv{
+  display: inline-block;
+}
+#togglediv{
+  display: inline-block;
+}
+
 #logolink {
   display: flex;
   justify-content: flex-start;
@@ -83,6 +98,10 @@
     flex-direction: column;
     align-items: center;
   }
+
+  #head {
+    width: 90%;
+  }
   
   #logolink {
     margin-left: 0;
@@ -133,19 +152,20 @@
 }
 
 /* 메뉴 라벨 버튼 */
-#menu {
+#toggleMenu {
   margin: auto 0px;
-  padding-right: 15vw;
+  padding-right: 0px;
 }
 
-#menucheck {
+/* #menucheck {
   display: none;
-}
+} */
 
-#menu > img {
-  padding-top: 5px;
-  padding-right: 5px;
-  width: 20px;
+#toggleMenu > img {
+  padding: 0px;
+  /* padding-top: 5px; */
+  /* padding-right: 5px; */
+  width: 15px;
   /* https://codepen.io/sosuke/pen/Pjoqqp 에서 값 생성 */
   filter: invert(50%) sepia(10%) saturate(15%) hue-rotate(59deg) brightness(91%)
     contrast(84%);
