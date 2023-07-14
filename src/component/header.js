@@ -78,7 +78,7 @@ export function headerGenerator() {
   menulist.append(li_2);
 
   let li_3 = createNode("li", null, "menu_style")
-  let b1 = createNode("button", "modeLabel");
+  let b1 = createNode("button", "modeButton");
   b1.innerText = "Mode";
   let modeinput = createNode("input", "modeCheck");
   modeinput.type = "checkbox";

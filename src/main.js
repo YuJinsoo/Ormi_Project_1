@@ -12,7 +12,6 @@ import * as utils from "./utils.js";
 import { closeLoading, openLoading } from "./loading.js";
 import { koWordAPI, testAPI } from "./wordSearchAPI.js";
 
-// TODO 반응형 메뉴 리스트 이벤트 연결하기
 
 // html 생성
 const $body = document.querySelector("body");
@@ -34,6 +33,7 @@ $infoSection.classList.add("hidden");
 $ansSection.classList.add("hidden");
 //utils.answerButtonsDisplay(false, $infoSection, $ansSection);
 
+// TODO 반응형 메뉴 리스트 이벤트 연결하기
 // 이벤트 발생할 node들 get
 const $selbox = document.querySelector("#langselect");
 const $input = document.querySelector("#answerText");
@@ -43,7 +43,8 @@ const $regameBtn = document.querySelector("#regameBtn");
 const $warnToGptBtn = document.querySelector("#warnBtn");
 const $boardarea_user = document.querySelector("#boardarea_user");
 const $foldBtn = document.querySelector("#foldBtn");
-const $menuCheck = document.querySelector("#menucheck");
+// const $menuCheck = document.querySelector("#menucheck");
+const $modeButton = document.querySelector("#modeButton")
 const $modeCheck = document.querySelector("#modeCheck");
 const $dictmsg = document.querySelector("#dictmsg");
 const $gptmsg = document.querySelector("#gptmsg");
@@ -72,6 +73,7 @@ $startBtn.addEventListener("click", (e) => {
   document.querySelector("#answerBtn").disabled = false;
   $dictmsg.innerText = '';
 
+  // TODO 영어모드일때 사전api pass 추가 필요
   // 추출한 단어를 가진 promise를 리턴함
   let api_result = utils.chatGptAPI(data);
   api_result.then( word => {
@@ -206,20 +208,22 @@ $foldBtn.addEventListener("click", (e) => {
 });
 
 // 토글 메뉴 창 이벤트
-$menuCheck.addEventListener("change", (e) => {
-  e.preventDefault();
-  const $menuWindow = document.querySelector("#menuMain");
+// $menuCheck.addEventListener("change", (e) => {
+//   e.preventDefault();
+//   const $menuWindow = document.querySelector("#menuMain");
 
-  if (e.target.checked) {
-    $menuWindow.style.cssText = "--click_slide: -30vw";
-  } else {
-    $menuWindow.style.cssText = "--click_slide: 30vw";
-  }
-});
+//   if (e.target.checked) {
+//     $menuWindow.style.cssText = "--click_slide: -30vw";
+//   } else {
+//     $menuWindow.style.cssText = "--click_slide: 30vw";
+//   }
+// });
 
-// 다크모드 on/off 메뉴 이벤트
-$modeCheck.addEventListener("change", (e) => {
-  e.preventDefault();
+//모드버튼
+$modeButton.addEventListener("click", (e) =>{
+  e.preventDefault;
+  console.log($modeCheck.checked);
+  $modeCheck.checked = !$modeCheck.checked;
 
   const $index = document.querySelector("#index");
   const $wordboard = document.querySelector("#wordboard");
@@ -227,7 +231,7 @@ $modeCheck.addEventListener("change", (e) => {
   const $buttons = document.querySelectorAll(".btndafault");
   const $message = document.querySelector("#message");
 
-  if (e.target.checked) {
+  if ($modeCheck.checked === true) {
     $body.style.backgroundColor = "rgb(8, 14, 46)";
     $header.style.backgroundColor = "rgb(8, 14, 46)";
     $header.style.borderColor = "#828282";
