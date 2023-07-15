@@ -73,9 +73,8 @@ $startBtn.addEventListener("click", (e) => {
   document.querySelector("#answerBtn").disabled = false;
   $dictmsg.innerText = '';
 
-  // TODO 영어모드일때 사전api pass 추가 필요
+  // TODO api 래핑해서 함수 적용
   // 추출한 단어를 가진 promise를 리턴함
-
   if (selected_lang === "Korean"){
     let api_result = utils.chatGptAPI(data);
   api_result.then( word => {
@@ -90,7 +89,7 @@ $startBtn.addEventListener("click", (e) => {
       }
 
       if (res.channel.total <= 1){
-        //TODO 게임진행 구현
+        
       }
       
     })
@@ -151,7 +150,7 @@ $answerBtn.addEventListener("click", (e) => {
       }
 
       if (res.channel.total <= 1){
-        //TODO 게임진행 구현
+        
       }
       
     })

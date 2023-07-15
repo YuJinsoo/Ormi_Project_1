@@ -10,15 +10,16 @@
 - 단어는 정해진 형태 (JSON의 object) 로 전달 되고, 정해진 형태가 아니라면 경고창을 발생시킵니다.
 - PC와 모바일 환경에서도 UI가 동일하게 잘 표현하도록 반응형을 구현하였습니다.
 - HTML, CSS, JavaScript를 사용해서 모듈화하고 토글 메뉴, 단어 보드 숨기기, 배경색 변경 기능을 구현하였습니다.
-- 한국어사전 open API 사용하여 단어의 사전 유효성 검사 기능 추가하였습니다.
+- 한국어 모드의 경우 한국어사전 open API 사용하여 단어의 사전 유효성 검사 기능 추가하였습니다.
 - 게임 시작, 다시시작 시 편의성을 위해 게임하기 편리한 위치로 스크롤을 자동으로 위치합니다.
+- 반응형 메뉴를 구현했습니다. 화면이 작아지면 햄버거 버튼 메뉴로 변경됩니다.
 
 ## 개발 환경 및 배포 URL
 
 1. :computer: 개발 환경
 
 - HTML, CSS, JavaScript
-- SweetAlert2, JQuery
+- SweetAlert2, JQuery, fetch API
 - gitHub 페이지 배포
 
 2. :link: 배포 URL
@@ -40,57 +41,62 @@
 ## 프로젝트 구조
 
 ```
-│  index.html
-│  README.md
-│
-├─.vscode
-│      extensions.json
-│
-├─asset
-│      1.jpg
-│      2.jpg
-│      3.jpg
-│      Circles-menu-3.gif
-│      Hourglass.gif
-│      menu.svg
-│      refresh.png
-│      versus.png
-│
-├─chromedriver_win32
-│      chromedriver.exe
-│      LICENSE.chromedriver
-│
-├─css
-│      buttonstyle.css
-│      headerstyle.css
-│      loadingstyle.css
-│      mainstyle.css
-│      scoreboardstyle.css
-│      screenstyle.css
-│
-├─readme
-│      en.gif
-│      main.gif
-│      menu.gif
-│      mobile.gif
-│      slider.gif
-│
-└─src
-    │  loading.js
-    │  main.js
-    │  screen.js
-    │  utils.js
-    │
-    ├─component
-    │      answerSection.js
-    │      createNode.js
-    │      footer.js
-    │      header.js
-    │      inputSection.js
-    │      menuGenerator.js
-    │      title.js
-    │
-    └─dataset
+|   index.html
+|   README.md
+|
++---.vscode
+|       extensions.json
+|
++---asset
+|       1.jpg
+|       2.jpg
+|       3.jpg
+|       Circles-menu-3.gif
+|       Hourglass.gif
+|       menu.svg
+|       refresh.png
+|       versus.png
+|
++---chromedriver_win32
+|       chromedriver.exe
+|       LICENSE.chromedriver
+|
++---css
+|       buttonstyle.css
+|       fadeoutanimation.css
+|       headerstyle.css
+|       inputstyle.css
+|       loadingstyle.css
+|       mainstyle.css
+|       reset.css
+|       scoreboardstyle.css
+|       screenstyle.css
+|
++---readme
+|       en.gif
+|       main.gif
+|       menu.gif
+|       mobile.gif
+|       slider.gif
+|
+\---src
+    |   loading.js
+    |   main.js
+    |   screen.js
+    |   utils.js
+    |   wordSearchAPI.js
+    |
+    +---component
+    |       answerSection.js
+    |       createNode.js
+    |       footer.js
+    |       header.js
+    |       inputSection.js
+    |       menuGenerator.js
+    |       start.js
+    |       title.js
+    |
+    \---dataset
             dataset_en.js
             dataset_ko.js
 ```
@@ -98,9 +104,11 @@
 ## 개발 일정 (WBS)
 
 - 2023-05-25 ~ 2023-06-14
+- 간간히 추가 수정 ~ 2023-07-15
 
 ## 프로젝트 동작 화면
 
+TODO 이미지 수정 필요
 1. 게임 진행 화면
 
 ---
@@ -149,6 +157,8 @@
 
 3. gpt가 말하는 단어중 없는 단어가 있습니다. 일단은 유저가 gpt에게 경고 count를 올릴 수 있는 버튼으로 해결하였습니다. 최종적으로 크롤러를 개발해서 사전에서 유효성을 검색하는 기능을 추가하고 싶은데 다른 기능을 모두 완료한 후에 붙이는 식으로 해야 된다고 판단했습니다.
 
+4. 크롤링 적용은 리소스가 많이 드는 작업이라고 판단했고, 일단 한국어 버전에서 단어 유효성을 확인할 수 있는 방법을 고민했습니다. 고민 결과 open API를 사용해서 단어 유효성을 검증할 수 있을 것이라고 판단해서 크롤링 대신 사전API를 적용했습니다.
+
 ## 추가 개발 계획
 
 - ~~gpt API의 응답 기다리는 동안 로딩 화면 개발~~ 개발완료
@@ -162,9 +172,9 @@
 - ~~토글 메뉴버튼 추가~~ 완료
 - ~~다크모드 기능~~ 완료
 - ~~게임 UI를 게임에 집중할 수 있는 구조로 변경 및 애니메이션 추가~~
-- 한국어사전 open API 사용하여 단어의 사전 유효성 검사 기능 추가
+- ~~한국어사전 open API 사용하여 단어의 사전 유효성 검사 기능 추가~~
 - 단어 제시 부분 크기를 키우고 같은 위치에 번갈아가면서 표현하고, 누가 말한 단어인지 표기
-- 상단 햄버거 메뉴 수정
+- ~~상단 햄버거 메뉴 수정~~
 
 ## :ballot_box_with_check: 느낀 점
 
@@ -177,6 +187,8 @@
 - 처음에는 index.html 파일에 모든 구조를 작성했었으나, 표현할 구역을 나누어서 vanilla JS 로 Node를 생성하고 추가하는 방식으로 리팩토링 했습니다. 리팩토링 한 후에 코드리뷰에서 게임 내용에 집중이 되지 않는다는 피드백을 받았고, 해결 방안으로 게임 실행창을 상단으로 올리고 집중될 수 있도록 크기를 조정하는 등 구조를 바꿨습니다. 이 때 구조를 나누어서 생성했기 때문에 빠르게 구조를 바꿀 수 있었습니다. 그래서 프로젝트를 계획할 때 기능 혹은 표현되는 범위를 잘 생각하고 범위로 나눠서 개발하는 것이 중요하다는 것을 느꼈습니다.
 
 - 또한 기능을 개발하면서 기능도 중요하지만 임의의 사용자가 보았을 때 어떻게 사용하게 될 지 생각하면서 구성요소를 배치하는 것이 중요하다고 생각했습니다. 코드리뷰를 받을 때 어떤 기능이 중심인지 애매한 UI라는 코멘트를 받았었는데, 내가 개발한 것이 일종의 '게임' 인데 게임 진행에 집중되는 구조가 아니었기 때문에 받은 코멘트라고 생각했습니다. 개발한 사람이 생각했을 때에는 생각한대로 사용자가 사용할 것이라고 생각하지만, 개발하는 사람은 모든것을 자기가 생각해서 개발하기 때문에 유저의 입장을 놓칠 수 있다는 것을 깨닳았습니다. 이러한 점을 유의해서 내가 무엇을 개발하고 있는지, 사용자 입장에서는 어떻게 접근할지 생각해보는게 중요하다고 느꼈습니다. 가장 좋은 방법은 다른 사람에게 사용 피드백을 받는 것이 가장 확실했습니다.
+
+- 기능을 점점 추가하다 보니 함수들이 많아지고, 기능을 개선할 때 함수를 알아보기 쉽지 않다는 것을 알게되었습니다. 그래서 함수 이름을 최대한 함수가 가진 기능을 알아보기 쉬운 것으로 하고, 반복될 수 있는 부분을 생각해서 함수로 구현하여 적용했습니다.
 
 2. 기능
 
@@ -199,6 +211,8 @@
 - 이번 프로젝트를 진행하면서 디자인과 상상력에 대한 생각을 많이 했습니다. 평소에 어떤 사이트를 보더라도 이건 어떻게 만들었을까? 하는 생각을 자주 하지는 않는데, 프로젝트를 진행하면서 위 같은 생각을 하게 되었습니다. 자주 들어가는 사이트의 생김새도 조금 더 자세하게 보게 되어있고, 이건 어떻게 만들었을까 하는 궁금증도 생겼습니다.
 
 - 또한 앞으로 웹사이트를 볼 때 주의깊에 보아야 겠다고 생각했습니다. 막상 프로젝트를 시작하다 보니 어떤 방식으로 어떻게 만들어야 겠다고 생각이 잘 나지 않았습니다. 상상의 나래를 펼쳐서 내가 생각한 것들이 다양하게 나오면 좋겠지만, 보고 경험한 것이 있으면 더욱 좋은 프로젝트를 생각해내고 만들 수 있을 것 같다는 생각이 들었습니다.
+
+- 무엇보다 개발한 사람은 어떻게 동작할 지 고민하는 시간이 있기 때문에 동작하는 방법에 대해 완전히 이해하고 어색함을 느끼기 힘들 수 있다는 것을 알게되었습니다. 코드리뷰를 통해서 다른 사용자가 봤을 때에는 내가 생각한 대로 느껴지지 않을 가능성이 높다는 것을 알게 되었고, 디자인이나 동작을 설계할 때 '아무것도 모르는 임의의 사람'을 가정하고 생각하면서 구성하는 것이 중요하다고 느꼈습니다.
 
 ## 코드리뷰 받은 항목 및 적용 현황
 
