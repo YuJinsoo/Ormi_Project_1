@@ -33,7 +33,6 @@ $infoSection.classList.add("hidden");
 $ansSection.classList.add("hidden");
 //utils.answerButtonsDisplay(false, $infoSection, $ansSection);
 
-// TODO 반응형 메뉴 리스트 이벤트 연결하기
 // 이벤트 발생할 node들 get
 const $selbox = document.querySelector("#langselect");
 const $input = document.querySelector("#answerText");
@@ -48,6 +47,7 @@ const $modeButton = document.querySelector("#modeButton")
 const $modeCheck = document.querySelector("#modeCheck");
 const $dictmsg = document.querySelector("#dictmsg");
 const $gptmsg = document.querySelector("#gptmsg");
+const $togglebtn = document.querySelector("#logomenu");
 
 let selected_lang = "Korean";
 //학습 데이터로 data 변수 세팅
@@ -75,8 +75,11 @@ $startBtn.addEventListener("click", (e) => {
 
   // TODO 영어모드일때 사전api pass 추가 필요
   // 추출한 단어를 가진 promise를 리턴함
-  let api_result = utils.chatGptAPI(data);
+
+  if (selected_lang === "Korean"){
+    let api_result = utils.chatGptAPI(data);
   api_result.then( word => {
+
     let dict_result = koWordAPI(word);
     dict_result.then( res => {
       utils.writeDictMsg($dictmsg, res);
@@ -96,7 +99,17 @@ $startBtn.addEventListener("click", (e) => {
       closeLoading();
       utils.scrollToGame();
     });
-  })
+  });
+
+  } else{
+    let api_result = utils.chatGptAPI(data);
+    api_result.then( word => {
+      
+    }).finally(()=>{
+      closeLoading();
+      utils.scrollToGame();
+    });
+  };
 });
 
 
@@ -124,8 +137,10 @@ $answerBtn.addEventListener("click", (e) => {
   utils.answerTagAdder(userInputData, $boardarea_user);
 
   // 추출한 단어를 가진 promise를 리턴함
-  let api_result = utils.chatGptAPI(data);
+  if (selected_lang === "Korean"){
+    let api_result = utils.chatGptAPI(data);
   api_result.then( word => {
+
     let dict_result = koWordAPI(word);
     dict_result.then( res => {
       utils.writeDictMsg($dictmsg, res);
@@ -140,15 +155,22 @@ $answerBtn.addEventListener("click", (e) => {
       }
       
     })
-    .catch(e =>{
-      //swal
-      Swal.fire({icon: "warning",
-      text: `${e}`})
-    })
+    .catch()
     .finally(()=>{
       closeLoading();
+      utils.scrollToGame();
     });
-  })
+  });
+
+  } else{
+    let api_result = utils.chatGptAPI(data);
+    api_result.then( word => {
+      
+    }).finally(()=>{
+      closeLoading();
+      utils.scrollToGame();
+    });
+  };
 });
 
 //경고횟수 늘리는 이벤트
@@ -218,6 +240,17 @@ $foldBtn.addEventListener("click", (e) => {
 //     $menuWindow.style.cssText = "--click_slide: 30vw";
 //   }
 // });
+
+$togglebtn.addEventListener("click", (e) =>{
+  e.preventDefault;
+
+  const $menulist = document.querySelector("#navbar_menu")
+  $menulist.classList.toggle("active");
+
+  let size = $menulist.getBoundingClientRect();
+  let h = size.bottom - size.y;
+  $body.classList.toggle("pluspad");
+})
 
 //모드버튼
 $modeButton.addEventListener("click", (e) =>{

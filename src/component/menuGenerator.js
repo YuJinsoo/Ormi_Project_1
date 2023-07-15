@@ -11,7 +11,7 @@ export function menuGenerator() {
   resultNode.append(li_1);
 
   let li_2 = createNode("li", null, "menu_style")
-  li_2.innerText = "Language"
+  li_2.innerText = "Language:"
   let selbox = createNode("select", "langselect");
   let opt_ko = createNode("option");
   opt_ko.innerText = "Korean";

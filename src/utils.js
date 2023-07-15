@@ -316,8 +316,8 @@ function answerButtonsDisplay(on, node1, node2) {
 }
 
 function scrollToGame() {
-  // let movetoY = window.pageYOffset + $("#startBtn").getBoundingClientRect().y;
-  let movetoY = window.pageYOffset + $("#startBtn").offset().top;
+  let movetoY = $("#explanation").offset().top + $("h1").offset().top;
+  // console.log(window.pageYOffset);
   $("html, body").animate(
     {
       scrollTop: movetoY,
