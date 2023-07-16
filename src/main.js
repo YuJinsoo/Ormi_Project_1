@@ -1,16 +1,13 @@
 import { headerGenerator } from "./component/header.js";
 import { inputSectionGenerator } from "./component/inputSection.js";
-import {
-  answerSectionGenerator,
-  wordBoardSet,
-} from "./component/answerSection.js";
+import { answerSectionGenerator, wordBoardSet } from "./component/answerSection.js";
 import { footerGenerator } from "./component/footer.js";
 import { titleGenerator } from "./component/title.js";
 import { startButtonGenerator } from "./component/start.js";
 
 import * as utils from "./utils.js";
 import { closeLoading, openLoading } from "./loading.js";
-import { koWordAPI, testAPI } from "./wordSearchAPI.js";
+import { koWordCheckAPI } from "./koDictAPI.js";
 
 
 // html 생성
@@ -54,7 +51,7 @@ let selected_lang = "Korean";
 let data = [];
 data = utils.gameStartSetting(data, selected_lang);
 
-// koWordAPI("나무");
+// koWordCheckAPI("나무");
 
 // 언어선택 이벤트
 $selbox.addEventListener("change", (e) => {
@@ -73,42 +70,7 @@ $startBtn.addEventListener("click", (e) => {
   document.querySelector("#answerBtn").disabled = false;
   $dictmsg.innerText = '';
 
-  // TODO api 래핑해서 함수 적용
-  // 추출한 단어를 가진 promise를 리턴함
-  if (selected_lang === "Korean"){
-    let api_result = utils.chatGptAPI(data);
-  api_result.then( word => {
-
-    let dict_result = koWordAPI(word);
-    dict_result.then( res => {
-      utils.writeDictMsg($dictmsg, res);
-
-      if (res === false){
-        utils.checkScoreCount("user");
-        return;
-      }
-
-      if (res.channel.total <= 1){
-        
-      }
-      
-    })
-    .catch()
-    .finally(()=>{
-      closeLoading();
-      utils.scrollToGame();
-    });
-  });
-
-  } else{
-    let api_result = utils.chatGptAPI(data);
-    api_result.then( word => {
-      
-    }).finally(()=>{
-      closeLoading();
-      utils.scrollToGame();
-    });
-  };
+  utils.wrapAPIs();
 });
 
 
@@ -135,41 +97,7 @@ $answerBtn.addEventListener("click", (e) => {
   utils.appendData(data, "user", wrapInputData);
   utils.answerTagAdder(userInputData, $boardarea_user);
 
-  // 추출한 단어를 가진 promise를 리턴함
-  if (selected_lang === "Korean"){
-    let api_result = utils.chatGptAPI(data);
-  api_result.then( word => {
-
-    let dict_result = koWordAPI(word);
-    dict_result.then( res => {
-      utils.writeDictMsg($dictmsg, res);
-
-      if (res === false){
-        utils.checkScoreCount("user");
-        return;
-      }
-
-      if (res.channel.total <= 1){
-        
-      }
-      
-    })
-    .catch()
-    .finally(()=>{
-      closeLoading();
-      utils.scrollToGame();
-    });
-  });
-
-  } else{
-    let api_result = utils.chatGptAPI(data);
-    api_result.then( word => {
-      
-    }).finally(()=>{
-      closeLoading();
-      utils.scrollToGame();
-    });
-  };
+  utils.wrapAPIs();
 });
 
 //경고횟수 늘리는 이벤트

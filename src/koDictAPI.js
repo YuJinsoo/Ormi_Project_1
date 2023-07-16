@@ -19,7 +19,7 @@ const proxy = "https://proxy.cors.sh";
  * @param {string} word 한국어 단어를 문자열로 입력
  * @returns api의 리턴데이터(오브젝트)를 포함한 promise 반환합니다. 사전에서 찾을 수 없는 단어일 경우 false를 반환합니다.
  */
-export async function koWordAPI(word) {
+export async function koWordCheckAPI(word) {
   let key = "5506921242C21452811AFA56D1F94A04";
   // 단어검색, json형식, 일치단어, 명사/대명사 찾기
   let search = `${proxy}/${url}?key=${key}&type_search=search&req_type=json&advanced=y&method=exact&pos=1,2&q=${word}`;

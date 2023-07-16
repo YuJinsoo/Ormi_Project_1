@@ -1,7 +1,7 @@
 import { openLoading, closeLoading } from "./loading.js";
 import { resetDataKo } from "./dataset/dataset_ko.js";
 import { resetDataEn } from "./dataset/dataset_en.js";
-import { koWordAPI } from "./wordSearchAPI.js";
+import { koWordAPI } from "./koDictAPI.js";
 
 const count_max = 2;
 let gpt_count = 0;
@@ -139,17 +139,16 @@ function checkCorrectWord(word, side) {
   }
 
   if (result === false) {
-    checkWarnCount(side);
+    checkScoreCount(side);
   }
 
   if (checkDuplicated(word)) {
-    checkWarnCount(side);
+    checkScoreCount(side);
   }
 }
 
-// checkCorrectWord()의 result가 false 일때 경고 점수 카운트, 승리알림
-
 /**
+ * checkCorrectWord()의 result가 false 일때 경고 점수 카운트, 승리알림
  * 경고 횟수를 카운트하고 초과했을 때 누구가 승리했는지 알림
  * @param {String} side "user" 혹은 "assistant" 만 입력해야 합니다.
  */
@@ -267,28 +266,11 @@ function gameStartSetting(data, selected_lang) {
   return data;
 }
 
-// function checkWordFromDict(word, selected_lang) {
-  
-//   const msgarea = document.querySelector("#dictmsg")
-  
-//   if (selected_lang === "korean") {
-//     console.log('단어검사')
-//     res = koWordAPI(word);
-//     console.log(res)
-
-//     if (res === false){
-//       msgarea.innerText = `${word}는 사전에서 유효한 단어가 아닙니다!`;
-//     }
-//     else{
-//       msgarea.innerText =`${data.channel.item[0].pos} : ${data.channel.item[0].sense.definition}`;
-//     }
-//   }
-//   else {
-//     msgarea.innerText("영어는 아직 사전 기능이 적용되지 않았습니다.")
-//   }
-
-// }
-
+/**
+ * koWordCheck로 반환된 단어 정보를 표시해주는 함수
+ * @param {*} dictmsg 
+ * @param {*} data 
+ */
 function writeDictMsg(dictmsg, data){
   const area = dictmsg;
 
@@ -300,6 +282,13 @@ function writeDictMsg(dictmsg, data){
   }
 }
 
+/**
+ * 게임 진행 중 ui 화면 보이고 숨기는 기능
+ * @param {*} on 
+ * @param {*} node1 
+ * @param {*} node2 
+ * @returns 없음
+ */
 function answerButtonsDisplay(on, node1, node2) {
   if (on === true) {
     node1.classList.add("appear");
@@ -335,6 +324,47 @@ function scrollToTop(){
   );
 }
 
+/**
+ * chatGptAPI와 koWordCheckAPI를 이용해 gpt와 응답을 주고 받고, 받은 단어를 확인하여 게임 진행 작업을 하는 함수
+ */
+function wrapAPIs(){
+  if (selected_lang === "Korean"){
+    // 추출한 단어를 가진 promise를 리턴함
+    let api_result = utils.chatGptAPI(data);
+    api_result.then( word => {
+
+    let dict_result = koWordCheckAPI(word);
+    dict_result.then( res => {
+      utils.writeDictMsg($dictmsg, res);
+
+      if (res === false){
+        utils.checkScoreCount("user");
+        return;
+      }
+
+      if (res.channel.total <= 1){
+        
+      }
+      
+    })
+    .catch()
+    .finally(()=>{
+      closeLoading();
+      utils.scrollToGame();
+    });
+  });
+
+  } else{
+    let api_result = utils.chatGptAPI(data);
+    api_result.then( word => {
+      
+    }).finally(()=>{
+      closeLoading();
+      utils.scrollToGame();
+    });
+  };
+}
+
 export {
   chatGptAPI,
   wrapToJsonForm,
@@ -350,6 +380,7 @@ export {
   writeDictMsg,
   scrollToGame,
   scrollToTop,
+  wrapAPIs,
   url,
   answers,
 };
