@@ -1,7 +1,9 @@
 import { openLoading, closeLoading } from "./loading.js";
 import { resetDataKo } from "./dataset/dataset_ko.js";
 import { resetDataEn } from "./dataset/dataset_en.js";
-import { koWordAPI } from "./koDictAPI.js";
+import { koWordCheckAPI } from "./koDictAPI.js";
+
+// TODO 함수가 좀 많아서 분리가 필요해보임. 리팩토링!
 
 const count_max = 2;
 let gpt_count = 0;
