@@ -9,7 +9,9 @@ const count_max = 2;
 let gpt_count = 0;
 let user_count = 0;
 
-const url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
+// const url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
+const url = 'https://api.openai.com/v1/chat/completions'
+const key = '...'
 
 const answers = {
   gpt: [],
@@ -22,9 +24,11 @@ const answers = {
  * @returns 추출한 단어를 가진 promise를 리턴함
  */
 async function chatGptAPI(data) {
+  console.log(data)
   const api_result = await fetch(url, {
     method: "POST",
     headers: {
+      "Authorization": `Bearer ${key}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
@@ -329,18 +333,25 @@ function scrollToTop(){
 /**
  * chatGptAPI와 koWordCheckAPI를 이용해 gpt와 응답을 주고 받고, 받은 단어를 확인하여 게임 진행 작업을 하는 함수
  */
-function wrapAPIs(){
+function wrapAPIs(selected_lang, data){
   if (selected_lang === "Korean"){
     // 추출한 단어를 가진 promise를 리턴함
-    let api_result = utils.chatGptAPI(data);
-    api_result.then( word => {
+    console.log(selected_lang);
+    console.log(data);
 
-    let dict_result = koWordCheckAPI(word);
-    dict_result.then( res => {
-      utils.writeDictMsg($dictmsg, res);
+    const realdata = {
+      "model": "gpt-3.5-turbo",
+      "messages": data
+    }
+    let api_result = chatGptAPI(realdata);
+    api_result.then( word => {
+      
+      let dict_result = koWordCheckAPI(word);
+      dict_result.then( res => {
+      writeDictMsg(document.querySelector("#dictmsg"), res);
 
       if (res === false){
-        utils.checkScoreCount("user");
+        checkScoreCount("user");
         return;
       }
 
@@ -352,17 +363,17 @@ function wrapAPIs(){
     .catch()
     .finally(()=>{
       closeLoading();
-      utils.scrollToGame();
+      scrollToGame();
     });
   });
 
   } else{
-    let api_result = utils.chatGptAPI(data);
+    let api_result = chatGptAPI(data);
     api_result.then( word => {
       
     }).finally(()=>{
       closeLoading();
-      utils.scrollToGame();
+      scrollToGame();
     });
   };
 }

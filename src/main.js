@@ -70,7 +70,7 @@ $startBtn.addEventListener("click", (e) => {
   document.querySelector("#answerBtn").disabled = false;
   $dictmsg.innerText = '';
 
-  utils.wrapAPIs();
+  utils.wrapAPIs(selected_lang, data);
 });
 
 
@@ -97,7 +97,7 @@ $answerBtn.addEventListener("click", (e) => {
   utils.appendData(data, "user", wrapInputData);
   utils.answerTagAdder(userInputData, $boardarea_user);
 
-  utils.wrapAPIs();
+  utils.wrapAPIs(selected_lang, data);
 });
 
 //경고횟수 늘리는 이벤트
